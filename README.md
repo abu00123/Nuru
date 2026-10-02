@@ -8,7 +8,7 @@ Nuru is a full-stack web platform that provides verified, searchable information
 
 ## GitHub Repository
 
-<!-- Add your repo link here -->
+[https://github.com/abu00123/Nuru](https://github.com/abu00123/Nuru)
 
 ## Video Demo
 
