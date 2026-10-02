@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="fqo8fOpdM9QNFlN7KHUE">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Text" vertex="1">
+          <mxGeometry height="30" width="60" x="280" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-21" edge="1" parent="1" source="VMDDEOHviqNWwa9Odxgw-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VMDDEOHviqNWwa9Odxgw-19" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Information details&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-22" edge="1" parent="1" source="VMDDEOHviqNWwa9Odxgw-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VMDDEOHviqNWwa9Odxgw-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Administrator details" vertex="1">
+          <mxGeometry height="60" width="120" x="400" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Search results" vertex="1">
+          <mxGeometry height="60" width="120" x="400" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-25" edge="1" parent="1" source="VMDDEOHviqNWwa9Odxgw-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="VMDDEOHviqNWwa9Odxgw-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Home &amp;amp; Search" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Nuru title, search bar, topic categories, destination selector, and “Get help” link&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Topic and destination filters, information titles, brief descriptions, and location labels" vertex="1">
+          <mxGeometry height="70" width="130" x="520" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&#xa;Title, destination, information text, sources, publication dates, last source-check date, limitations, support contacts, and “Report a problem” button&#xa;&#xa;" vertex="1">
+          <mxGeometry height="80" width="220" x="60" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&#xa;Entries and statuses, edit controls, sources, review notes, version history, and publish/archive buttons&#xa;&#xa;" vertex="1">
+          <mxGeometry height="80" width="185" x="525" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="VMDDEOHviqNWwa9Odxgw-24" edge="1" parent="1" source="VMDDEOHviqNWwa9Odxgw-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.003;entryY=0.371;entryDx=0;entryDy=0;entryPerimeter=0;" target="VMDDEOHviqNWwa9Odxgw-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
