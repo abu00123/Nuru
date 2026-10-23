@@ -11,7 +11,6 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
     try {
       const res = await api.post('/auth/token/', { username, password });
@@ -29,7 +28,6 @@ export default function Login() {
       <div style={styles.container}>
         <h1 style={styles.title}>Admin Login</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
-          {error && <p style={styles.error}>{error}</p>}
           <div style={styles.field}>
             <label style={styles.label}>Username</label>
             <input value={username} onChange={e => setUsername(e.target.value)} style={styles.input} required autoFocus />
@@ -41,6 +39,7 @@ export default function Login() {
           <button type="submit" disabled={loading} style={styles.btn}>
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
+          {error && <p style={styles.error}>{error}</p>}
         </form>
       </div>
     </main>

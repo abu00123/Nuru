@@ -34,7 +34,7 @@ export default function Explore() {
   const updateParam = (key: string, value: string) => {
     const params = Object.fromEntries(searchParams.entries());
     if (value) params[key] = value; else delete params[key];
-    setSearchParams(params);
+    setSearchParams(params, { replace: true });
   };
 
   return (
@@ -42,7 +42,7 @@ export default function Explore() {
       <div style={styles.container}>
         <h1 style={styles.title}>Explore Information</h1>
         <div style={styles.controls}>
-          <SearchBar onSearch={q => updateParam('search', q)} placeholder="Search..." />
+          <SearchBar onSearch={q => updateParam('search', q)} placeholder="Search..." initialValue={search} />
           <FilterBar
             categories={categories}
             destinations={destinations}

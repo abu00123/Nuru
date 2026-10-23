@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mockup — Explore</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #f8faf9; color: #1e293b; }
+  .screen-title { background: #1a3c2e; color: #cde8d8; padding: 6px 12px; font-size: 11px; letter-spacing: 1px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #1a3c2e; }
+  .brand { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-link { color: #cde8d8; font-size: 0.95rem; text-decoration: none; }
+  .nav-link.active { color: #fff; font-weight: 600; border-bottom: 2px solid #4caf82; padding-bottom: 2px; }
+  .admin-link { color: #4caf82; border: 1px solid #4caf82; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.9rem; }
+  .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.5rem; font-weight: 700; color: #1a3c2e; margin-bottom: 1.5rem; }
+  .controls { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .search-row { display: flex; gap: 0.5rem; }
+  .search-input { flex: 1; padding: 0.75rem 1rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+  .search-btn { padding: 0.75rem 1.5rem; background: #1a3c2e; color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+  .filter-row { display: flex; gap: 1rem; }
+  .filter-select { flex: 1; padding: 0.65rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; background: #fff; }
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; }
+  .card-meta { display: flex; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .tag { font-size: 0.75rem; font-weight: 700; color: #1a3c2e; text-transform: uppercase; }
+  .tag.dest { color: #64748b; font-weight: 400; }
+  .card h3 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.9rem; color: #475569; line-height: 1.6; margin-bottom: 1rem; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; }
+  .badge { padding: 0.2rem 0.7rem; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
+  .badge.verified { background: #e6f4ed; color: #1a7a45; }
+  .badge.unverified { background: #fef9c3; color: #b45309; }
+  .view-btn { padding: 0.5rem 1.1rem; background: #1a3c2e; color: #fff; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+  footer { background: #1a3c2e; color: #cde8d8; text-align: center; padding: 1.5rem; font-size: 0.85rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+<div class="screen-title">MOCKUP — EXPLORE PAGE &nbsp;|&nbsp; Route: /explore</div>
+<nav>
+  <span class="brand">NURU</span>
+  <div class="nav-links">
+    <a class="nav-link" href="#">Home</a>
+    <a class="nav-link active" href="#">Explore</a>
+    <a class="admin-link" href="#">Admin</a>
+  </div>
+</nav>
+<div class="container">
+  <h1>Explore Information</h1>
+  <div class="controls">
+    <div class="search-row">
+      <input class="search-input" type="text" placeholder="Search..." />
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="filter-row">
+      <select class="filter-select"><option>All Categories</option><option>Education</option><option>Safety</option><option>Healthcare</option></select>
+      <select class="filter-select"><option>All Destinations</option><option>Kirundo</option><option>Bujumbura</option></select>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-meta"><span class="tag">Education</span><span class="tag dest">Kirundo, Burundi</span></div>
+    <h3>Primary Schools Reopened in Kirundo Province</h3>
+    <p>Primary schools in Kirundo Province have resumed normal operations following the end of the conflict period. Enrollment is open for returning children.</p>
+    <div class="card-footer"><span class="badge verified">Verified</span><button class="view-btn">View information</button></div>
+  </div>
+
+  <div class="card">
+    <div class="card-meta"><span class="tag">Healthcare</span><span class="tag dest">Bujumbura, Burundi</span></div>
+    <h3>Health Centres Operational in Bujumbura</h3>
+    <p>All major health centres in Bujumbura are operational. Free consultations are available for returning refugees with UNHCR documentation.</p>
+    <div class="card-footer"><span class="badge verified">Verified</span><button class="view-btn">View information</button></div>
+  </div>
+
+  <div class="card">
+    <div class="card-meta"><span class="tag">Documents</span><span class="tag dest">Gitega, Burundi</span></div>
+    <h3>National ID Renewal Process for Returnees</h3>
+    <p>The civil registration office in Gitega is processing national ID renewals for returnees. Bring proof of prior residence and a sworn statement.</p>
+    <div class="card-footer"><span class="badge unverified">Unverified</span><button class="view-btn">View information</button></div>
+  </div>
+</div>
+<footer>© 2024 Nuru — Digital Return Information Management System</footer>
+</body>
+</html>

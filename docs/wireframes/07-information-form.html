@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wireframe — Add / Edit Information</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #fff; color: #333; }
+  .screen-title { background: #eee; padding: 6px 12px; font-size: 11px; color: #666; border-bottom: 1px solid #ccc; }
+  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; border: 2px solid #333; background: #ddd; }
+  .nav-brand { width: 60px; height: 20px; background: #bbb; border: 1px solid #999; }
+  .nav-links { display: flex; gap: 12px; }
+  .nav-link { width: 50px; height: 16px; background: #bbb; border: 1px solid #999; }
+  .annotation { font-size: 10px; color: #e74c3c; margin-top: 4px; font-style: italic; }
+  .container { max-width: 720px; margin: 0 auto; padding: 24px; }
+  .page-title { width: 200px; height: 22px; background: #bbb; border: 1px solid #999; margin-bottom: 20px; }
+  .form-card { border: 2px solid #bbb; border-radius: 6px; padding: 20px; background: #f9f9f9; display: flex; flex-direction: column; gap: 14px; }
+  .field-label { width: 100px; height: 12px; background: #bbb; border: 1px solid #999; margin-bottom: 6px; }
+  .input-box { width: 100%; height: 36px; background: #fff; border: 2px solid #bbb; border-radius: 4px; }
+  .textarea-box { width: 100%; height: 100px; background: #fff; border: 2px solid #bbb; border-radius: 4px; }
+  .two-col { display: flex; gap: 12px; }
+  .two-col > div { flex: 1; }
+  .select-box { width: 100%; height: 36px; background: #fff; border: 2px solid #bbb; border-radius: 4px; }
+  .checkbox-row { display: flex; align-items: center; gap: 8px; }
+  .checkbox { width: 16px; height: 16px; background: #fff; border: 2px solid #bbb; }
+  .checkbox-label { width: 60px; height: 12px; background: #bbb; border: 1px solid #999; }
+  .submit-btn { width: 100%; height: 40px; background: #888; border: 1px solid #666; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="screen-title">WIREFRAME — ADD / EDIT INFORMATION &nbsp;|&nbsp; Route: /admin/new &nbsp;|&nbsp; /admin/edit/:id</div>
+<div class="navbar">
+  <div class="nav-brand"></div>
+  <div class="nav-links">
+    <div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="page-title"></div>
+  <div class="annotation" style="margin-bottom:12px;">POST /api/information/ (new) or PUT /api/information/:id/ (edit) — admin only</div>
+  <div class="form-card">
+    <div><div class="field-label"></div><div class="input-box"></div></div>
+    <div><div class="field-label"></div><div class="input-box"></div></div>
+    <div><div class="field-label"></div><div class="textarea-box"></div></div>
+    <div><div class="field-label"></div><div class="input-box"></div></div>
+    <div><div class="field-label"></div><div class="input-box"></div></div>
+
+    <div class="two-col">
+      <div>
+        <div class="field-label"></div>
+        <div class="select-box"></div>
+        <div class="annotation">Category dropdown</div>
+      </div>
+      <div>
+        <div class="field-label"></div>
+        <div class="select-box"></div>
+        <div class="annotation">Destination dropdown</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="field-label"></div>
+        <div class="select-box"></div>
+        <div class="annotation">verified / unverified / outdated</div>
+      </div>
+      <div>
+        <div class="field-label"></div>
+        <div class="input-box"></div>
+        <div class="annotation">Date picker</div>
+      </div>
+    </div>
+
+    <div class="checkbox-row">
+      <div class="checkbox"></div>
+      <div class="checkbox-label"></div>
+      <div class="annotation" style="margin-top:0; margin-left:8px;">Publish toggle — controls is_published</div>
+    </div>
+
+    <div class="submit-btn"></div>
+  </div>
+</div>
+</body>
+</html>

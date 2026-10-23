@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mockup — Home</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #f8faf9; color: #1e293b; }
+  .screen-title { background: #1a3c2e; color: #cde8d8; padding: 6px 12px; font-size: 11px; letter-spacing: 1px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #1a3c2e; }
+  .brand { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; text-decoration: none; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-link { color: #cde8d8; font-size: 0.95rem; text-decoration: none; }
+  .nav-link.active { color: #fff; font-weight: 600; border-bottom: 2px solid #4caf82; padding-bottom: 2px; }
+  .admin-link { color: #4caf82; border: 1px solid #4caf82; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.9rem; text-decoration: none; }
+  .hero { background: #1a3c2e; color: #fff; padding: 4rem 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+  .hero h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; line-height: 1.3; }
+  .hero p { color: #cde8d8; font-size: 1rem; }
+  .search-bar { display: flex; gap: 0.5rem; width: 100%; max-width: 520px; }
+  .search-input { flex: 1; padding: 0.75rem 1rem; border: none; border-radius: 6px; font-size: 1rem; }
+  .search-btn { padding: 0.75rem 1.5rem; background: #4caf82; color: #fff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+  .section { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+  .section h2 { font-size: 1.2rem; font-weight: 700; color: #1a3c2e; margin-bottom: 1.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .cat-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.2rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; cursor: pointer; }
+  .cat-card:hover { border-color: #1a3c2e; }
+  .cat-icon { font-size: 1.8rem; }
+  .cat-name { font-size: 0.85rem; font-weight: 600; color: #1e293b; text-align: center; }
+  footer { background: #1a3c2e; color: #cde8d8; text-align: center; padding: 1.5rem; font-size: 0.85rem; margin-top: auto; }
+</style>
+</head>
+<body>
+<div class="screen-title">MOCKUP — HOME PAGE &nbsp;|&nbsp; Route: /</div>
+<nav>
+  <span class="brand">NURU</span>
+  <div class="nav-links">
+    <a class="nav-link active" href="#">Home</a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="admin-link" href="#">Admin</a>
+  </div>
+</nav>
+<div class="hero">
+  <h1>Reliable information for people<br />considering voluntary return.</h1>
+  <p>Search verified information about safety, documents, housing, and more.</p>
+  <div class="search-bar">
+    <input class="search-input" type="text" placeholder="Search information..." />
+    <button class="search-btn">Search</button>
+  </div>
+</div>
+<div class="section">
+  <h2>Explore by Category</h2>
+  <div class="grid">
+    <div class="cat-card"><div class="cat-icon">🛡️</div><div class="cat-name">Safety</div></div>
+    <div class="cat-card"><div class="cat-icon">📄</div><div class="cat-name">Documents</div></div>
+    <div class="cat-card"><div class="cat-icon">🏠</div><div class="cat-name">Housing</div></div>
+    <div class="cat-card"><div class="cat-icon">🏥</div><div class="cat-name">Healthcare</div></div>
+    <div class="cat-card"><div class="cat-icon">📚</div><div class="cat-name">Education</div></div>
+    <div class="cat-card"><div class="cat-icon">💼</div><div class="cat-name">Livelihoods</div></div>
+    <div class="cat-card"><div class="cat-icon">🔄</div><div class="cat-name">Return</div></div>
+    <div class="cat-card"><div class="cat-icon">🤝</div><div class="cat-name">Support</div></div>
+  </div>
+</div>
+<footer>© 2024 Nuru — Digital Return Information Management System</footer>
+</body>
+</html>

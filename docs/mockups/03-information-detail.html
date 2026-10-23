@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mockup — Information Detail</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #f8faf9; color: #1e293b; }
+  .screen-title { background: #1a3c2e; color: #cde8d8; padding: 6px 12px; font-size: 11px; letter-spacing: 1px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #1a3c2e; }
+  .brand { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-link { color: #cde8d8; font-size: 0.95rem; text-decoration: none; }
+  .admin-link { color: #4caf82; border: 1px solid #4caf82; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.9rem; }
+  .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .back { color: #1a3c2e; font-size: 0.9rem; text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+  .header-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+  .meta { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .cat-tag { font-size: 0.78rem; font-weight: 700; color: #1a3c2e; text-transform: uppercase; }
+  .dest-tag { font-size: 0.78rem; color: #64748b; }
+  h1 { font-size: 1.4rem; font-weight: 700; color: #1e293b; margin-bottom: 1rem; }
+  .badges { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .badge { padding: 0.2rem 0.7rem; border-radius: 12px; font-size: 0.78rem; font-weight: 600; background: #e6f4ed; color: #1a7a45; }
+  .date { font-size: 0.85rem; color: #94a3b8; }
+  .section-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; }
+  .section-card h2 { font-size: 1rem; font-weight: 700; color: #1a3c2e; margin-bottom: 0.75rem; }
+  .section-card p { color: #475569; line-height: 1.7; font-size: 0.95rem; }
+  .source-link { color: #1a3c2e; font-weight: 600; text-decoration: none; }
+  .report-btn { display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; border: 1px solid #e2e8f0; border-radius: 6px; color: #b45309; text-decoration: none; font-size: 0.9rem; background: #fff; }
+  footer { background: #1a3c2e; color: #cde8d8; text-align: center; padding: 1.5rem; font-size: 0.85rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+<div class="screen-title">MOCKUP — INFORMATION DETAIL &nbsp;|&nbsp; Route: /information/:id</div>
+<nav>
+  <span class="brand">NURU</span>
+  <div class="nav-links">
+    <a class="nav-link" href="#">Home</a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="admin-link" href="#">Admin</a>
+  </div>
+</nav>
+<div class="container">
+  <a class="back" href="#">← Back to Explore</a>
+  <div class="header-card">
+    <div class="meta">
+      <span class="cat-tag">Education</span>
+      <span class="dest-tag">Kirundo, Burundi</span>
+    </div>
+    <h1>Primary Schools Reopened in Kirundo Province</h1>
+    <div class="badges">
+      <span class="badge">✓ Verified</span>
+      <span class="date">Last checked: 15 March 2024</span>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h2>Information</h2>
+    <p>As of early 2024, all 14 public primary schools in Kirundo Province have reopened. Returning families can enroll children by presenting a birth certificate or sworn statement at the local school office. The Ministry of Education has confirmed that no fees are required for primary enrollment. School supplies are available through UNICEF distribution points in Kirundo commune.</p>
+  </div>
+
+  <div class="section-card">
+    <h2>Source</h2>
+    <p><a class="source-link" href="#">UNICEF Burundi</a></p>
+  </div>
+
+  <a class="report-btn" href="#">⚑ Report outdated information</a>
+</div>
+<footer>© 2024 Nuru — Digital Return Information Management System</footer>
+</body>
+</html>

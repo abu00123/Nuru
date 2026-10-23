@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wireframe — Admin Login</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #fff; color: #333; }
+  .screen-title { background: #eee; padding: 6px 12px; font-size: 11px; color: #666; border-bottom: 1px solid #ccc; }
+  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; border: 2px solid #333; background: #ddd; }
+  .nav-brand { width: 60px; height: 20px; background: #bbb; border: 1px solid #999; }
+  .nav-links { display: flex; gap: 12px; }
+  .nav-link { width: 50px; height: 16px; background: #bbb; border: 1px solid #999; }
+  .annotation { font-size: 10px; color: #e74c3c; margin-top: 4px; font-style: italic; }
+  .page-wrap { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .form-container { width: 100%; max-width: 380px; }
+  .page-title { width: 140px; height: 20px; background: #bbb; border: 1px solid #999; margin: 0 auto 20px; }
+  .form-card { border: 2px solid #bbb; border-radius: 6px; padding: 20px; background: #f9f9f9; display: flex; flex-direction: column; gap: 14px; }
+  .field-label { width: 80px; height: 12px; background: #bbb; border: 1px solid #999; margin-bottom: 6px; }
+  .input-box { width: 100%; height: 36px; background: #fff; border: 2px solid #bbb; border-radius: 4px; }
+  .submit-btn { width: 100%; height: 40px; background: #888; border: 1px solid #666; border-radius: 4px; }
+  .error-box { width: 100%; height: 32px; background: #f5c6c6; border: 2px dashed #c00; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="screen-title">WIREFRAME — ADMIN LOGIN &nbsp;|&nbsp; Route: /login</div>
+<div class="navbar">
+  <div class="nav-brand"></div>
+  <div class="nav-links">
+    <div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div>
+  </div>
+</div>
+<div class="page-wrap">
+  <div class="form-container">
+    <div class="page-title"></div>
+    <div class="form-card">
+      <div>
+        <div class="field-label"></div>
+        <div class="input-box"></div>
+      </div>
+      <div>
+        <div class="field-label"></div>
+        <div class="input-box"></div>
+        <div class="annotation">Password field — masked input</div>
+      </div>
+      <div class="submit-btn"></div>
+      <div class="error-box"></div>
+      <div class="annotation">Error message shown on invalid credentials — stays visible until successful login</div>
+    </div>
+    <div class="annotation" style="margin-top:8px;">On success: stores JWT in localStorage → redirects to /admin</div>
+  </div>
+</div>
+</body>
+</html>

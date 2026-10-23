@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wireframe — Admin Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #fff; color: #333; }
+  .screen-title { background: #eee; padding: 6px 12px; font-size: 11px; color: #666; border-bottom: 1px solid #ccc; }
+  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; border: 2px solid #333; background: #ddd; }
+  .nav-brand { width: 60px; height: 20px; background: #bbb; border: 1px solid #999; }
+  .nav-links { display: flex; gap: 12px; }
+  .nav-link { width: 50px; height: 16px; background: #bbb; border: 1px solid #999; }
+  .annotation { font-size: 10px; color: #e74c3c; margin-top: 4px; font-style: italic; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .page-title { width: 160px; height: 22px; background: #bbb; border: 1px solid #999; }
+  .add-btn { width: 140px; height: 36px; background: #888; border: 1px solid #666; border-radius: 4px; }
+  .stats { display: flex; gap: 12px; margin-bottom: 24px; }
+  .stat-box { flex: 1; border: 2px solid #bbb; border-radius: 6px; padding: 16px; background: #f9f9f9; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .stat-num { width: 40px; height: 28px; background: #bbb; border: 1px solid #999; }
+  .stat-label { width: 80px; height: 12px; background: #ccc; border: 1px solid #aaa; }
+  .section-title { width: 140px; height: 16px; background: #bbb; border: 1px solid #999; margin-bottom: 12px; }
+  .row { display: flex; justify-content: space-between; align-items: center; border: 2px solid #bbb; border-radius: 6px; padding: 12px 16px; margin-bottom: 8px; background: #f9f9f9; }
+  .row-left { display: flex; flex-direction: column; gap: 6px; }
+  .row-title { width: 260px; height: 14px; background: #bbb; border: 1px solid #999; }
+  .row-meta { width: 160px; height: 10px; background: #ccc; border: 1px solid #aaa; }
+  .row-right { display: flex; align-items: center; gap: 10px; }
+  .pill { width: 50px; height: 20px; background: #ddd; border: 1px solid #bbb; border-radius: 10px; }
+  .pill.draft { background: #eee; border-style: dashed; }
+  .edit-link { width: 30px; height: 14px; background: #ccc; border: 1px solid #aaa; }
+  .status-select { width: 90px; height: 28px; background: #fff8e1; border: 2px solid #bbb; border-radius: 10px; }
+</style>
+</head>
+<body>
+<div class="screen-title">WIREFRAME — ADMIN DASHBOARD &nbsp;|&nbsp; Route: /admin</div>
+<div class="navbar">
+  <div class="nav-brand"></div>
+  <div class="nav-links">
+    <div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="top-bar">
+    <div class="page-title"></div>
+    <div class="add-btn"></div>
+  </div>
+  <div class="annotation" style="margin-bottom:16px;">Protected by AdminRoute — redirects to /login if no JWT token</div>
+
+  <div class="stats">
+    <div class="stat-box"><div class="stat-num"></div><div class="stat-label"></div></div>
+    <div class="stat-box"><div class="stat-num"></div><div class="stat-label"></div></div>
+  </div>
+
+  <div class="section-title"></div>
+  <div class="annotation" style="margin-bottom:10px;">GET /api/information/ — admins see all entries including drafts</div>
+  <div class="row">
+    <div class="row-left"><div class="row-title"></div><div class="row-meta"></div></div>
+    <div class="row-right"><div class="pill draft"></div><div class="pill"></div><div class="edit-link"></div></div>
+  </div>
+  <div class="row">
+    <div class="row-left"><div class="row-title"></div><div class="row-meta"></div></div>
+    <div class="row-right"><div class="pill"></div><div class="edit-link"></div></div>
+  </div>
+  <div class="row">
+    <div class="row-left"><div class="row-title"></div><div class="row-meta"></div></div>
+    <div class="row-right"><div class="pill"></div><div class="edit-link"></div></div>
+  </div>
+
+  <div class="section-title" style="margin-top:24px;"></div>
+  <div class="annotation" style="margin-bottom:10px;">GET /api/reports/ — admin only. Status updated via PATCH /api/reports/:id/</div>
+  <div class="row">
+    <div class="row-left"><div class="row-title"></div><div class="row-meta"></div></div>
+    <div class="row-right"><div class="status-select"></div></div>
+  </div>
+  <div class="row">
+    <div class="row-left"><div class="row-title"></div><div class="row-meta"></div></div>
+    <div class="row-right"><div class="status-select"></div></div>
+  </div>
+</div>
+</body>
+</html>

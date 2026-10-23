@@ -1,12 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface Props {
   onSearch: (query: string) => void;
   placeholder?: string;
+  initialValue?: string;
 }
 
-export default function SearchBar({ onSearch, placeholder = 'Search information...' }: Props) {
-  const [value, setValue] = useState('');
+export default function SearchBar({ onSearch, placeholder = 'Search information...', initialValue = '' }: Props) {
+  const [value, setValue] = useState(initialValue);
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    if (!mounted.current) { mounted.current = true; return; }
+    const timer = setTimeout(() => onSearch(value), 400);
+    return () => clearTimeout(timer);
+  }, [value]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +30,7 @@ export default function SearchBar({ onSearch, placeholder = 'Search information.
       <input
         type="text"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={handleChange}
         placeholder={placeholder}
         style={styles.input}
       />

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mockup — Admin Login</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, system-ui, sans-serif; background: #f8faf9; color: #1e293b; }
+  .screen-title { background: #1a3c2e; color: #cde8d8; padding: 6px 12px; font-size: 11px; letter-spacing: 1px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #1a3c2e; }
+  .brand { color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-link { color: #cde8d8; font-size: 0.95rem; text-decoration: none; }
+  .admin-link { color: #4caf82; border: 1px solid #4caf82; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.9rem; }
+  .page-wrap { min-height: 75vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+  .form-container { width: 100%; max-width: 400px; }
+  h1 { font-size: 1.4rem; font-weight: 700; color: #1a3c2e; text-align: center; margin-bottom: 1.5rem; }
+  .form-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  label { font-weight: 600; font-size: 0.9rem; color: #374151; display: block; margin-bottom: 0.4rem; }
+  input { width: 100%; padding: 0.7rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; font-family: inherit; }
+  .submit-btn { padding: 0.75rem; background: #1a3c2e; color: #fff; border: none; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer; }
+  .error { background: #fdecea; color: #b91c1c; border-radius: 6px; padding: 0.6rem 0.8rem; font-size: 0.9rem; }
+  footer { background: #1a3c2e; color: #cde8d8; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="screen-title">MOCKUP — ADMIN LOGIN &nbsp;|&nbsp; Route: /login</div>
+<nav>
+  <span class="brand">NURU</span>
+  <div class="nav-links">
+    <a class="nav-link" href="#">Home</a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="admin-link" href="#">Admin</a>
+  </div>
+</nav>
+<div class="page-wrap">
+  <div class="form-container">
+    <h1>Admin Login</h1>
+    <div class="form-card">
+      <div>
+        <label>Username</label>
+        <input type="text" value="admin" />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" value="wrongpassword" />
+      </div>
+      <button class="submit-btn">Sign In</button>
+      <p class="error">Invalid username or password.</p>
+    </div>
+  </div>
+</div>
+<footer>© 2024 Nuru — Digital Return Information Management System</footer>
+</body>
+</html>

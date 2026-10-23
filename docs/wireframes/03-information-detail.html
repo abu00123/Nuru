@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Wireframe — Information Detail</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #fff; color: #333; }
+  .screen-title { background: #eee; padding: 6px 12px; font-size: 11px; color: #666; border-bottom: 1px solid #ccc; }
+  .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; border: 2px solid #333; background: #ddd; }
+  .nav-brand { width: 60px; height: 20px; background: #bbb; border: 1px solid #999; }
+  .nav-links { display: flex; gap: 12px; }
+  .nav-link { width: 50px; height: 16px; background: #bbb; border: 1px solid #999; }
+  .annotation { font-size: 10px; color: #e74c3c; margin-top: 4px; font-style: italic; }
+  .container { max-width: 720px; margin: 0 auto; padding: 24px; }
+  .back-link { width: 120px; height: 14px; background: #ccc; border: 1px solid #aaa; margin-bottom: 20px; }
+  .header-card { border: 2px solid #bbb; border-radius: 6px; padding: 20px; margin-bottom: 16px; background: #f9f9f9; }
+  .meta-row { display: flex; gap: 10px; margin-bottom: 10px; }
+  .tag { width: 70px; height: 12px; background: #ccc; border: 1px solid #aaa; border-radius: 10px; }
+  .entry-title { width: 80%; height: 22px; background: #bbb; border: 1px solid #999; margin-bottom: 12px; }
+  .badge-row { display: flex; gap: 12px; align-items: center; }
+  .badge { width: 70px; height: 20px; background: #ccc; border: 1px solid #aaa; border-radius: 10px; }
+  .date-text { width: 140px; height: 12px; background: #ddd; border: 1px solid #ccc; }
+  .section-card { border: 2px solid #bbb; border-radius: 6px; padding: 20px; margin-bottom: 12px; background: #f9f9f9; }
+  .section-title { width: 120px; height: 16px; background: #bbb; border: 1px solid #999; margin-bottom: 12px; }
+  .text-line { width: 100%; height: 12px; background: #ddd; border: 1px solid #ccc; margin-bottom: 8px; }
+  .text-line.short { width: 65%; }
+  .source-link { width: 160px; height: 14px; background: #bbb; border: 1px solid #999; }
+  .report-btn { display: inline-block; margin-top: 16px; width: 220px; height: 36px; background: #f5f5f5; border: 2px solid #bbb; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="screen-title">WIREFRAME — INFORMATION DETAIL &nbsp;|&nbsp; Route: /information/:id</div>
+<div class="navbar">
+  <div class="nav-brand"></div>
+  <div class="nav-links">
+    <div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="back-link"></div>
+  <div class="annotation" style="margin-bottom:12px;">← Back to Explore</div>
+
+  <div class="header-card">
+    <div class="meta-row"><div class="tag"></div><div class="tag"></div></div>
+    <div class="entry-title"></div>
+    <div class="badge-row">
+      <div class="badge"></div>
+      <div class="date-text"></div>
+    </div>
+    <div class="annotation" style="margin-top:8px;">Verification status badge + last verified date from API</div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title"></div>
+    <div class="text-line"></div>
+    <div class="text-line"></div>
+    <div class="text-line"></div>
+    <div class="text-line short"></div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title"></div>
+    <div class="source-link"></div>
+    <div class="annotation" style="margin-top:8px;">Source name links to source_url — opens in new tab</div>
+  </div>
+
+  <div class="report-btn"></div>
+  <div class="annotation" style="margin-top:6px;">Links to /report/:id</div>
+</div>
+</body>
+</html>

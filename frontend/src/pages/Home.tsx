@@ -29,7 +29,7 @@ export default function Home() {
       <section style={styles.hero}>
         <h1 style={styles.heading}>Reliable information for people<br />considering voluntary return.</h1>
         <p style={styles.sub}>Search verified information about safety, documents, housing, and more.</p>
-        <SearchBar onSearch={q => navigate(`/explore?search=${q}`)} />
+        <SearchBar onSearch={q => { if (q) navigate(`/explore?search=${q}`); }} />
       </section>
 
       <section style={styles.section}>
