@@ -1,7 +1,8 @@
 from rest_framework import generics
+from django.db.models import Q
 from rest_framework.permissions import AllowAny, IsAdminUser
-from .models import Category, Destination, InformationEntry
-from .serializers import CategorySerializer, DestinationSerializer, InformationEntrySerializer
+from .models import Category, Destination, InformationEntry, SourceReview
+from .serializers import CategorySerializer, DestinationSerializer, InformationEntrySerializer, SourceReviewSerializer
 
 
 class InformationEntryListCreateView(generics.ListCreateAPIView):
@@ -23,7 +24,10 @@ class InformationEntryListCreateView(generics.ListCreateAPIView):
         destination = self.request.query_params.get('destination')
 
         if search:
-            queryset = queryset.filter(title__icontains=search) | queryset.filter(summary__icontains=search)
+            condition = Q(title__icontains=search) | Q(summary__icontains=search)
+            for language in ('rn', 'rw', 'sw'):
+                condition |= Q(**{f'translations__{language}__reviewed': True}) & (Q(**{f'translations__{language}__title__icontains': search}) | Q(**{f'translations__{language}__summary__icontains': search}))
+            queryset = queryset.filter(condition)
         if category:
             queryset = queryset.filter(category__name__iexact=category)
         if destination:
@@ -33,13 +37,25 @@ class InformationEntryListCreateView(generics.ListCreateAPIView):
 
 
 class InformationEntryDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = InformationEntry.objects.all()
+    def get_queryset(self):
+        if self.request.user and self.request.user.is_staff:
+            return InformationEntry.objects.all()
+        return InformationEntry.objects.filter(is_published=True)
     serializer_class = InformationEntrySerializer
 
     def get_permissions(self):
         if self.request.method in ('PUT', 'PATCH', 'DELETE'):
             return [IsAdminUser()]
         return [AllowAny()]
+
+
+class SourceReviewCreateView(generics.CreateAPIView):
+    serializer_class = SourceReviewSerializer
+    permission_classes = [IsAdminUser]
+
+    def perform_create(self, serializer):
+        entry = generics.get_object_or_404(InformationEntry, pk=self.kwargs['entry_pk'])
+        serializer.save(entry=entry, entry_version=entry.content_version, reviewed_by=self.request.user)
 
 
 class CategoryListView(generics.ListCreateAPIView):
