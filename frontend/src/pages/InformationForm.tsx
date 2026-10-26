@@ -1,8 +1,11 @@
+import GuideEditor from '../components/GuideEditor';
+import type {Guide,GuideTranslations} from '../features/core';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCategories, getDestinations, getInformationById } from '../services/informationService';
+import { getCategories, getDestinations, getInformationById, submitSourceReview } from '../services/informationService';
 import type { Category } from '../types/category';
 import type { Destination } from '../types/destination';
+import type { SourceReview } from '../types/information';
 import api from '../services/api';
 
 export default function InformationForm() {
@@ -13,29 +16,54 @@ export default function InformationForm() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [submitting, setSubmitting] = useState(false);
+  const [contentVersion, setContentVersion] = useState<number>(1);
+  const [latestReview, setLatestReview] = useState<SourceReview | null>(null);
+  const [reviewOutcome, setReviewOutcome] = useState<'suitable' | 'revision_required'>('suitable');
+  const [reviewNotes, setReviewNotes] = useState('');
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
+  const [reviewError, setReviewError] = useState('');
+  const [reviewSuccess, setReviewSuccess] = useState('');
 
+  const [guide, setGuide] = useState<Guide>({});
+  const [guideTranslations, setGuideTranslations] = useState<GuideTranslations>({});
+  const [guideLanguage, setGuideLanguage] = useState<'en'|'rn'|'rw'|'sw'>('en');
+  const [loadingEntry, setLoadingEntry] = useState(isEdit);
+  const [entryLoaded, setEntryLoaded] = useState(!isEdit);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     title: '', summary: '', content: '', category: '', destination: '',
     source_name: '', source_url: '', verification_status: 'verified',
     last_verified: '', is_published: false,
   });
 
+  const loadEntry = (entryId: number) => {
+    return getInformationById(entryId).then(r => {
+      const e = r.data;
+      setEntryLoaded(true);
+      setContentVersion(e.content_version ?? 1);
+      setLatestReview(e.latest_review ?? null);
+      setGuide(e.guide ?? {}); setGuideTranslations(e.guide_translations ?? {});
+      setForm({
+        title: e.title, summary: e.summary, content: e.content,
+        category: String(e.category), destination: String(e.destination),
+        source_name: e.source_name, source_url: e.source_url,
+        verification_status: e.verification_status,
+        last_verified: e.last_verified || '', is_published: e.is_published,
+      });
+    });
+  };
+
   useEffect(() => {
     getCategories().then(r => setCategories(r.data));
     getDestinations().then(r => setDestinations(r.data));
     if (isEdit && id) {
-      getInformationById(Number(id)).then(r => {
-        const e = r.data;
-        setForm({
-          title: e.title, summary: e.summary, content: e.content,
-          category: String(e.category), destination: String(e.destination),
-          source_name: e.source_name, source_url: e.source_url,
-          verification_status: e.verification_status,
-          last_verified: e.last_verified || '', is_published: e.is_published,
-        });
-      });
+      loadEntry(Number(id))
+        .catch(() => setError('Unable to load this entry. Reload before editing.'))
+        .finally(() => setLoadingEntry(false));
     }
   }, [id]);
+
+  const hasSuitableReview = latestReview?.outcome === 'suitable' && latestReview?.entry_version === contentVersion;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -44,16 +72,44 @@ export default function InformationForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
+    if (loadingEntry || !entryLoaded || submitting) return;
+    setError(''); setSubmitting(true);
+    const normalize = (value: Guide): Guide => ({...value,documents: value.documents?.map(document=>document.trim()).filter(Boolean)});
+    const translated = Object.fromEntries(Object.entries(guideTranslations).map(([code,value])=>[code,{...value,guide:normalize(value.guide)}]));
+    const payload = {...form,last_verified:form.last_verified || null,guide:normalize(guide),guide_translations:translated};
     try {
       if (isEdit) {
-        await api.put(`/information/${id}/`, form);
+        await api.put(`/information/${id}/`, payload);
+        await loadEntry(Number(id));
       } else {
-        await api.post('/information/', form);
+        const res = await api.post<{ id: number }>('/information/', payload);
+        navigate(`/admin/edit/${res.data.id}`);
       }
-      navigate('/admin');
+    } catch (err: unknown) {
+      const detail = (err as { response?: { data?: Record<string, string[]> } })?.response?.data;
+      if (detail && typeof detail === 'object') {
+        const messages = Object.entries(detail).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(' ') : v}`).join('\n');
+        setError(messages);
+      } else {
+        setError('Unable to save. Check required fields, contact details and reviewed guide translations, then try again.');
+      }
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleReviewSubmit = async () => {
+    if (!id || reviewSubmitting || !reviewNotes.trim()) return;
+    setReviewError(''); setReviewSuccess(''); setReviewSubmitting(true);
+    try {
+      await submitSourceReview(Number(id), reviewOutcome, reviewNotes);
+      setReviewNotes('');
+      setReviewSuccess('Review recorded.');
+      await loadEntry(Number(id));
+    } catch {
+      setReviewError('Unable to save review. Try again.');
+    } finally {
+      setReviewSubmitting(false);
     }
   };
 
@@ -61,7 +117,9 @@ export default function InformationForm() {
     <main style={styles.main}>
       <div style={styles.container}>
         <h1 style={styles.title}>{isEdit ? 'Edit Information' : 'Add Information'}</h1>
+        {error && <p role="alert" style={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit} style={styles.form}>
+        <fieldset disabled={submitting || loadingEntry || !entryLoaded} style={{border:0,padding:0,margin:0,display:'contents'}}>
           {(['title', 'summary', 'source_name', 'source_url'] as const).map(field => (
             <div key={field} style={styles.field}>
               <label style={styles.label}>{field.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}</label>
@@ -106,15 +164,55 @@ export default function InformationForm() {
             </div>
           </div>
 
+          <label>Guide language<select value={guideLanguage} onChange={e=>setGuideLanguage(e.target.value as typeof guideLanguage)}><option value="en">English</option><option value="rn">Kirundi</option><option value="rw">Kinyarwanda</option><option value="sw">Kiswahili</option></select></label>
+          <GuideEditor value={guideLanguage === 'en' ? guide : guideTranslations[guideLanguage]?.guide ?? {}} onChange={value=>{ if(guideLanguage === 'en') { setGuide(value); setGuideTranslations(previous=>Object.fromEntries(Object.entries(previous).map(([code,translation])=>[code,{...translation,reviewed:false}]))); } else setGuideTranslations(previous=>({...previous,[guideLanguage]:{guide:value,reviewed:false}})); }} />
+          {guideLanguage !== 'en' && <label><input type="checkbox" checked={guideTranslations[guideLanguage]?.reviewed ?? false} onChange={e=>{ const checked=e.target.checked; setGuideTranslations(previous=>({...previous,[guideLanguage]:{guide:previous[guideLanguage]?.guide ?? {},reviewed:checked}})); }} />Translation reviewed for publication</label>}
+
+          {isEdit && (
+            <div style={styles.reviewSection}>
+              <h2 style={styles.reviewTitle}>Source Review</h2>
+              {hasSuitableReview ? (
+                <p style={styles.reviewOk}>✓ Suitable review recorded for version {contentVersion} by {latestReview!.reviewed_by} on {new Date(latestReview!.reviewed_at).toLocaleDateString()}</p>
+              ) : (
+                <p style={styles.reviewWarning}>No suitable review for version {contentVersion}. Complete the review below before publishing.</p>
+              )}
+              <div style={styles.reviewForm}>
+                <div style={styles.field}>
+                  <label style={styles.label}>Outcome</label>
+                  <select value={reviewOutcome} onChange={e => setReviewOutcome(e.target.value as typeof reviewOutcome)} style={styles.select}>
+                    <option value="suitable">Suitable for publication</option>
+                    <option value="revision_required">Revision required</option>
+                  </select>
+                </div>
+                <div style={styles.field}>
+                  <label style={styles.label}>Notes</label>
+                  <textarea value={reviewNotes} onChange={e => setReviewNotes(e.target.value)} rows={3} style={styles.textarea} placeholder="Describe what was checked against the source" />
+                </div>
+                {reviewError && <p role="alert" style={styles.error}>{reviewError}</p>}
+                {reviewSuccess && <p style={styles.reviewOk}>{reviewSuccess}</p>}
+                <button type="button" disabled={reviewSubmitting || !reviewNotes.trim()} onClick={handleReviewSubmit} style={styles.reviewBtn}>
+                  {reviewSubmitting ? 'Saving...' : 'Record review'}
+                </button>
+              </div>
+            </div>
+          )}
+
           <label style={styles.checkLabel}>
-            <input type="checkbox" name="is_published" checked={form.is_published} onChange={handleChange} />
+            <input
+              type="checkbox"
+              name="is_published"
+              checked={form.is_published}
+              onChange={handleChange}
+              disabled={isEdit && !hasSuitableReview}
+            />
             Publish
+            {isEdit && !hasSuitableReview && <span style={styles.reviewWarning}> — record a suitable review above first</span>}
           </label>
 
           <button type="submit" disabled={submitting} style={styles.btn}>
-            {submitting ? 'Saving...' : isEdit ? 'Save Changes' : 'Publish'}
+            {submitting ? 'Saving...' : isEdit ? 'Save Changes' : 'Save Draft'}
           </button>
-        </form>
+        </fieldset></form>
       </div>
     </main>
   );
@@ -133,4 +231,11 @@ const styles: Record<string, React.CSSProperties> = {
   row: { display: 'flex', gap: '1rem' },
   checkLabel: { display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#374151', cursor: 'pointer' },
   btn: { padding: '0.75rem', backgroundColor: '#1a3c2e', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600, fontSize: '1rem' },
+  error: { color: '#a12525', fontSize: '0.9rem', whiteSpace: 'pre-wrap' },
+  reviewSection: { border: '1px solid #e2e8f0', borderRadius: 8, padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', backgroundColor: '#f8faf9' },
+  reviewTitle: { fontSize: '1rem', fontWeight: 700, color: '#1a3c2e', margin: 0 },
+  reviewForm: { display: 'flex', flexDirection: 'column', gap: '0.75rem' },
+  reviewBtn: { padding: '0.6rem 1.2rem', backgroundColor: '#1a3c2e', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600, fontSize: '0.9rem', alignSelf: 'flex-start' },
+  reviewOk: { color: '#1a7a45', fontWeight: 600, fontSize: '0.9rem', margin: 0 },
+  reviewWarning: { color: '#b45309', fontWeight: 600, fontSize: '0.9rem', margin: 0 },
 };

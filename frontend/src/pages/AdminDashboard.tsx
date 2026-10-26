@@ -44,6 +44,7 @@ export default function AdminDashboard() {
             <div style={styles.rowRight}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 {!e.is_published && <span style={styles.draftPill}>Draft</span>}
+                {!e.is_published && e.latest_review?.outcome !== 'suitable' && <span style={styles.reviewPill}>Needs review</span>}
                 <StatusBadge status={e.verification_status} />
               </div>
               <Link to={`/admin/edit/${e.id}`} style={styles.editLink}>Edit</Link>
@@ -90,5 +91,6 @@ const styles: Record<string, React.CSSProperties> = {
   entryMeta: { margin: '0.25rem 0 0', fontSize: '0.8rem', color: '#64748b' },
   editLink: { color: '#1a3c2e', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' },
   draftPill: { padding: '0.2rem 0.6rem', borderRadius: 12, fontSize: '0.8rem', fontWeight: 600, backgroundColor: '#f1f5f9', color: '#64748b' },
+  reviewPill: { padding: '0.2rem 0.6rem', borderRadius: 12, fontSize: '0.8rem', fontWeight: 600, backgroundColor: '#fff8e1', color: '#b45309' },
   statusPill: { padding: '0.2rem 0.6rem', borderRadius: 12, fontSize: '0.8rem', fontWeight: 600 },
 };

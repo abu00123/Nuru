@@ -1,8 +1,10 @@
+import { t, useLanguage } from '../i18n';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 export default function Login() {
+  useLanguage();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,9 +17,10 @@ export default function Login() {
     try {
       const res = await api.post('/auth/token/', { username, password });
       localStorage.setItem('access_token', res.data.access);
+      localStorage.setItem('refresh_token', res.data.refresh);
       navigate('/admin');
     } catch {
-      setError('Invalid username or password.');
+      setError(t("Invalid username or password."));
     } finally {
       setLoading(false);
     }
@@ -26,18 +29,18 @@ export default function Login() {
   return (
     <main style={styles.main}>
       <div style={styles.container}>
-        <h1 style={styles.title}>Admin Login</h1>
+        <h1 style={styles.title}>{t("Admin Login")}</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.field}>
-            <label style={styles.label}>Username</label>
+            <label style={styles.label}>{t("Username")}</label>
             <input value={username} onChange={e => setUsername(e.target.value)} style={styles.input} required autoFocus />
           </div>
           <div style={styles.field}>
-            <label style={styles.label}>Password</label>
+            <label style={styles.label}>{t("Password")}</label>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} style={styles.input} required />
           </div>
           <button type="submit" disabled={loading} style={styles.btn}>
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? t("Signing in...") : t("Sign In")}
           </button>
           {error && <p style={styles.error}>{error}</p>}
         </form>

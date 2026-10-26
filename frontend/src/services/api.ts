@@ -13,9 +13,27 @@ api.interceptors.request.use(config => {
 
 api.interceptors.response.use(
   res => res,
-  err => {
-    if (err.response?.status === 401 && window.location.pathname !== '/login') {
+  async err => {
+    const original = err.config;
+    if (err.response?.status === 401 && !original._retry && window.location.pathname !== '/login') {
+      original._retry = true;
+      const refresh = localStorage.getItem('refresh_token');
+      if (refresh) {
+        try {
+          const res = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'}/auth/token/refresh/`,
+            { refresh }
+          );
+          const newAccess = res.data.access;
+          localStorage.setItem('access_token', newAccess);
+          original.headers.Authorization = `Bearer ${newAccess}`;
+          return api(original);
+        } catch {
+          // refresh failed — fall through to logout
+        }
+      }
       localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
       window.location.href = '/login';
     }
     return Promise.reject(err);
