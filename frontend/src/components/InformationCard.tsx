@@ -1,3 +1,6 @@
+import ArticleActions from './ArticleActions';
+import {localizeArticle,currentLanguage} from '../i18n';
+import { t, useLanguage } from '../i18n';
 import { Link } from 'react-router-dom';
 import type { InformationEntry } from '../types/information';
 import StatusBadge from './StatusBadge';
@@ -6,22 +9,25 @@ interface Props {
   entry: InformationEntry;
 }
 
-export default function InformationCard({ entry }: Props) {
+export default function InformationCard({ entry: originalEntry }: Props) {
+  useLanguage();
+  const entry = localizeArticle(originalEntry,currentLanguage());
   return (
     <div style={styles.card}>
       <div style={styles.meta}>
-        <span style={styles.category}>{entry.category_name}</span>
+        <span style={styles.category}>{t(entry.category_name)}</span>
         <span style={styles.dot}>•</span>
         <span style={styles.destination}>{entry.destination_name}</span>
       </div>
       <h3 style={styles.title}>{entry.title}</h3>
-      <p style={styles.summary}>{entry.summary}</p>
+      <p style={styles.summary}>{entry.summary}</p>{entry.translationFallback && <p role="note">{t('This article is shown in English because a reviewed translation is not available.')}</p>}
+      <ArticleActions entry={entry} />
       <div style={styles.footer}>
         <StatusBadge status={entry.verification_status} />
         {entry.last_verified && (
-          <span style={styles.date}>Last checked: {new Date(entry.last_verified).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+          <span style={styles.date}>{t("Last checked:")}{' '}{new Date(entry.last_verified).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
         )}
-        <Link to={`/information/${entry.id}`} style={styles.link}>View information →</Link>
+        <Link to={`/information/${entry.id}`} style={styles.link}>{t("View information →")}</Link>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import {t} from '../i18n';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
@@ -8,9 +9,9 @@ interface Props {
 export default function CategoryCard({ name, icon }: Props) {
   const navigate = useNavigate();
   return (
-    <button onClick={() => navigate(`/explore?category=${name}`)} style={styles.card}>
+    <button onClick={() => navigate(`/explore?category=${t(name)}`)} style={styles.card}>
       <span style={styles.icon}>{icon}</span>
-      <span style={styles.name}>{name}</span>
+      <span style={styles.name}>{t(name)}</span>
     </button>
   );
 }

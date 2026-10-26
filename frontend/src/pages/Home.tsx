@@ -1,3 +1,4 @@
+import { t, useLanguage } from '../i18n';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
@@ -17,6 +18,7 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 export default function Home() {
+  useLanguage();
   const navigate = useNavigate();
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -27,13 +29,13 @@ export default function Home() {
   return (
     <main style={styles.main}>
       <section style={styles.hero}>
-        <h1 style={styles.heading}>Reliable information for people<br />considering voluntary return.</h1>
-        <p style={styles.sub}>Search verified information about safety, documents, housing, and more.</p>
+        <h1 style={styles.heading}>{t("Reliable information for people")}<br />{t("considering voluntary return.")}</h1>
+        <p style={styles.sub}>{t("Search verified information about safety, documents, housing, and more.")}</p>
         <SearchBar onSearch={q => { if (q) navigate(`/explore?search=${q}`); }} />
       </section>
 
       <section style={styles.section}>
-        <h2 style={styles.sectionTitle}>Explore Information</h2>
+        <h2 style={styles.sectionTitle}>{t("Explore Information")}</h2>
         <div style={styles.grid}>
           {categories.map(c => (
             <CategoryCard key={c.id} name={c.name} icon={CATEGORY_ICONS[c.name] ?? '📋'} />

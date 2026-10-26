@@ -1,3 +1,4 @@
+import { t, useLanguage } from '../i18n';
 import { useState, useEffect, useRef } from 'react';
 
 interface Props {
@@ -6,7 +7,8 @@ interface Props {
   initialValue?: string;
 }
 
-export default function SearchBar({ onSearch, placeholder = 'Search information...', initialValue = '' }: Props) {
+export default function SearchBar({ onSearch, placeholder = t("Search information..."), initialValue = '' }: Props) {
+  useLanguage();
   const [value, setValue] = useState(initialValue);
   const mounted = useRef(false);
 
@@ -34,7 +36,7 @@ export default function SearchBar({ onSearch, placeholder = 'Search information.
         placeholder={placeholder}
         style={styles.input}
       />
-      <button type="submit" style={styles.button}>Search</button>
+      <button type="submit" style={styles.button}>{t("Search")}</button>
     </form>
   );
 }

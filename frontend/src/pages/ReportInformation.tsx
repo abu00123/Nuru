@@ -1,3 +1,4 @@
+import { t, useLanguage } from '../i18n';
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { submitReport } from '../services/reportService';
@@ -10,6 +11,7 @@ const REASONS = [
 ];
 
 export default function ReportInformation() {
+  useLanguage();
   const { id } = useParams<{ id: string }>();
   const [reason, setReason] = useState('outdated');
   const [comment, setComment] = useState('');
@@ -34,9 +36,9 @@ export default function ReportInformation() {
         <div style={styles.container}>
           <div style={styles.success}>
             <p style={styles.successIcon}>✓</p>
-            <h2>Report submitted</h2>
-            <p style={{ color: '#475569' }}>Thank you. Our team will review this information.</p>
-            <Link to="/explore" style={styles.btn}>Back to Explore</Link>
+            <h2>{t("Report submitted")}</h2>
+            <p style={{ color: '#475569' }}>{t("Thank you. Our team will review this information.")}</p>
+            <Link to="/explore" style={styles.btn}>{t("Back to Explore")}</Link>
           </div>
         </div>
       </main>
@@ -46,19 +48,19 @@ export default function ReportInformation() {
   return (
     <main style={styles.main}>
       <div style={styles.container}>
-        <Link to={`/information/${id}`} style={styles.back}>← Back</Link>
-        <h1 style={styles.title}>Report Information</h1>
+        <Link to={`/information/${id}`} style={styles.back}>{t("← Back")}</Link>
+        <h1 style={styles.title}>{t("Report Information")}</h1>
         <form onSubmit={handleSubmit} style={styles.form}>
-          <label style={styles.label}>Why are you reporting this?</label>
+          <label style={styles.label}>{t("Why are you reporting this?")}</label>
           <select value={reason} onChange={e => setReason(e.target.value)} style={styles.select}>
-            {REASONS.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+            {REASONS.map(r => <option key={r.value} value={r.value}>{t(r.label)}</option>)}
           </select>
 
-          <label style={styles.label}>Comments (optional)</label>
-          <textarea value={comment} onChange={e => setComment(e.target.value)} rows={4} style={styles.textarea} placeholder="Provide additional details..." />
+          <label style={styles.label}>{t("Comments (optional)")}</label>
+          <textarea value={comment} onChange={e => setComment(e.target.value)} rows={4} style={styles.textarea} placeholder={t("Provide additional details...")} />
 
           <button type="submit" disabled={submitting} style={styles.btn}>
-            {submitting ? 'Submitting...' : 'Submit Report'}
+            {submitting ? t("Submitting...") : t("Submit Report")}
           </button>
         </form>
       </div>

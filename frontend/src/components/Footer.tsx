@@ -1,7 +1,9 @@
+import { t, useLanguage } from '../i18n';
 export default function Footer() {
+  useLanguage();
   return (
     <footer style={styles.footer}>
-      <p style={styles.text}>© {new Date().getFullYear()} Nuru — Reliable information for people considering voluntary return.</p>
+      <p style={styles.text}>© {new Date().getFullYear()} {t("Nuru — Reliable information for people considering voluntary return.")}</p>
     </footer>
   );
 }

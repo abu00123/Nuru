@@ -1,3 +1,4 @@
+import { t, useLanguage } from '../i18n';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { InformationEntry } from '../types/information';
@@ -9,6 +10,7 @@ import SearchBar from '../components/SearchBar';
 import FilterBar from '../components/FilterBar';
 
 export default function Explore() {
+  useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const [entries, setEntries] = useState<InformationEntry[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -40,9 +42,9 @@ export default function Explore() {
   return (
     <main style={styles.main}>
       <div style={styles.container}>
-        <h1 style={styles.title}>Explore Information</h1>
+        <h1 style={styles.title}>{t("Explore Information")}</h1>
         <div style={styles.controls}>
-          <SearchBar onSearch={q => updateParam('search', q)} placeholder="Search..." initialValue={search} />
+          <SearchBar onSearch={q => updateParam('search', q)} placeholder={t("Search...")} initialValue={search} />
           <FilterBar
             categories={categories}
             destinations={destinations}
@@ -53,9 +55,9 @@ export default function Explore() {
           />
         </div>
         {loading ? (
-          <p style={styles.state}>Loading...</p>
+          <p style={styles.state}>{t("Loading...")}</p>
         ) : entries.length === 0 ? (
-          <p style={styles.state}>No information found.</p>
+          <p style={styles.state}>{t("No information found.")}</p>
         ) : (
           entries.map(e => <InformationCard key={e.id} entry={e} />)
         )}

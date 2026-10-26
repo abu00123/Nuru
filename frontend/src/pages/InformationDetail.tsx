@@ -1,3 +1,7 @@
+import ArticleActions from '../components/ArticleActions';
+import StepGuide from '../components/StepGuide';
+import {localizeArticle,currentLanguage} from '../i18n';
+import { t, useLanguage } from '../i18n';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import type { InformationEntry } from '../types/information';
@@ -5,48 +9,58 @@ import { getInformationById } from '../services/informationService';
 import StatusBadge from '../components/StatusBadge';
 
 export default function InformationDetail() {
+  useLanguage();
   const { id } = useParams<{ id: string }>();
-  const [entry, setEntry] = useState<InformationEntry | null>(null);
+  const [originalEntry, setEntry] = useState<InformationEntry | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let active = true;
+    setLoading(true);
+    setEntry(null);
     if (id) {
       getInformationById(Number(id))
-        .then(r => setEntry(r.data))
-        .finally(() => setLoading(false));
-    }
+        .then(r => { if (active) setEntry(r.data.is_published ? r.data : null); })
+        .catch(() => { if (active) setEntry(null); })
+        .finally(() => { if (active) setLoading(false); });
+    } else setLoading(false);
+    return () => { active = false; };
   }, [id]);
 
-  if (loading) return <p style={styles.state}>Loading...</p>;
-  if (!entry) return <p style={styles.state}>Information not found.</p>;
+  if (loading) return <p style={styles.state}>{t("Loading...")}</p>;
+  const entry = originalEntry ? localizeArticle(originalEntry,currentLanguage()) : null;
+  if (!entry) return <p style={styles.state}>{t("Information not found.")}</p>;
 
   return (
     <main style={styles.main}>
       <div style={styles.container}>
-        <Link to="/explore" style={styles.back}>← Back to Explore</Link>
+        <Link to="/explore" style={styles.back}>{t("← Back to Explore")}</Link>
 
         <div style={styles.header}>
           <div style={styles.meta}>
-            <span style={styles.category}>{entry.category_name}</span>
+            <span style={styles.category}>{t(entry.category_name)}</span>
             <span style={styles.destination}>{entry.destination_name}</span>
           </div>
           <h1 style={styles.title}>{entry.title}</h1>
+          <ArticleActions entry={entry} />
           <div style={styles.badges}>
             <StatusBadge status={entry.verification_status} />
             {entry.last_verified && (
-              <span style={styles.date}>Last checked: {new Date(entry.last_verified).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              <span style={styles.date}>{t("Last checked:")}{' '}{new Date(entry.last_verified).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
             )}
           </div>
         </div>
 
-        <section style={styles.section}>
-          <h2 style={styles.sectionTitle}>Information</h2>
+        {entry.translationFallback && <p role="note">{t('This article is shown in English because a reviewed translation is not available.')}</p>}
+<section style={styles.section}>
+          <h2 style={styles.sectionTitle}>{t("Information")}</h2>
           <p style={styles.content}>{entry.content}</p>
         </section>
 
+        <StepGuide entry={originalEntry!} />
         {entry.source_name && (
           <section style={styles.section}>
-            <h2 style={styles.sectionTitle}>Source</h2>
+            <h2 style={styles.sectionTitle}>{t("Source")}</h2>
             <p style={styles.content}>
               {entry.source_url ? (
                 <a href={entry.source_url} target="_blank" rel="noreferrer" style={styles.sourceLink}>{entry.source_name}</a>
@@ -55,7 +69,7 @@ export default function InformationDetail() {
           </section>
         )}
 
-        <Link to={`/report/${entry.id}`} style={styles.reportBtn}>Report outdated information</Link>
+        <Link to={`/report/${entry.id}`} style={styles.reportBtn}>{t("Report outdated information")}</Link>
       </div>
     </main>
   );

@@ -1,3 +1,5 @@
+import Saved from './pages/Saved';
+import { useLanguage } from './i18n';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,12 +13,14 @@ import InformationForm from './pages/InformationForm';
 import Login from './pages/Login';
 
 export default function App() {
+ const language = useLanguage();
   return (
     <BrowserRouter>
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div lang={language} style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/saved" element={<Saved />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/information/:id" element={<InformationDetail />} />
           <Route path="/report/:id" element={<ReportInformation />} />
