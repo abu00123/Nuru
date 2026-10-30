@@ -7,5 +7,5 @@ export const submitReport = (data: { information_entry: number; reason: string; 
 export const getReports = () =>
   api.get<Report[]>('/reports/');
 
-export const updateReportStatus = (id: number, status: Report['status']) =>
-  api.patch<Report>(`/reports/${id}/`, { status });
+export const updateReportStatus = (id: number, status: Report['status'], resolution_notes = '') =>
+  api.patch<Report>(`/reports/${id}/`, { status, resolution_notes });

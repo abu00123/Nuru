@@ -16,6 +16,7 @@ export default function Explore() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const search = searchParams.get('search') || '';
   const category = searchParams.get('category') || '';
@@ -27,10 +28,19 @@ export default function Explore() {
   }, []);
 
   useEffect(() => {
+    let active = true;
     setLoading(true);
+    setError('');
     getInformation({ search, category, destination })
-      .then(r => setEntries(r.data))
-      .finally(() => setLoading(false));
+      .then(r => { if (active) setEntries(r.data.filter(entry => entry.is_published)); })
+      .catch(() => {
+        if (active) {
+          setEntries([]);
+          setError('Unable to load information. Please try again shortly.');
+        }
+      })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
   }, [search, category, destination]);
 
   const updateParam = (key: string, value: string) => {
@@ -56,6 +66,8 @@ export default function Explore() {
         </div>
         {loading ? (
           <p style={styles.state}>{t("Loading...")}</p>
+        ) : error ? (
+          <p role="alert" style={styles.state}>{error}</p>
         ) : entries.length === 0 ? (
           <p style={styles.state}>{t("No information found.")}</p>
         ) : (

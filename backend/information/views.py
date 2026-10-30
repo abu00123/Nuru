@@ -24,9 +24,12 @@ class InformationEntryListCreateView(generics.ListCreateAPIView):
         destination = self.request.query_params.get('destination')
 
         if search:
-            condition = Q(title__icontains=search) | Q(summary__icontains=search)
+            condition = Q(title__icontains=search) | Q(summary__icontains=search) | Q(content__icontains=search)
             for language in ('rn', 'rw', 'sw'):
-                condition |= Q(**{f'translations__{language}__reviewed': True}) & (Q(**{f'translations__{language}__title__icontains': search}) | Q(**{f'translations__{language}__summary__icontains': search}))
+                translated_match = Q()
+                for field in ('title', 'summary', 'content'):
+                    translated_match |= Q(**{f'translations__{language}__{field}__icontains': search})
+                condition |= Q(**{f'translations__{language}__reviewed': True}) & translated_match
             queryset = queryset.filter(condition)
         if category:
             queryset = queryset.filter(category__name__iexact=category)

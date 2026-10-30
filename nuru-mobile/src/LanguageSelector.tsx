@@ -1,0 +1,3 @@
+import {Pressable,View,Text} from 'react-native';
+import {languages,setLanguage,t,useLanguage} from './i18n';
+export default function LanguageSelector() { const language=useLanguage(); return <View style={{padding:16,gap:8}}><Text>{t('Language')}</Text><View style={{flexDirection:'row',flexWrap:'wrap',gap:8}}>{languages.map(l=><Pressable accessibilityRole="button" accessibilityLabel={l.name} accessibilityState={{selected:language===l.code}} key={l.code} onPress={()=>setLanguage(l.code)} style={{minHeight:44,padding:12,borderRadius:8,backgroundColor:language===l.code?'#1a3c2e':'#e4ede7'}}><Text style={{color:language===l.code?'white':'#1a3c2e'}}>{l.name}</Text></Pressable>)}</View></View>; }

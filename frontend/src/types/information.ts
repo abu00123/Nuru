@@ -24,6 +24,7 @@ export interface InformationEntry {
   destination_name: string;
   source_name: string;
   source_url: string;
+  source_publication_date: string | null;
   verification_status: 'verified' | 'unverified' | 'outdated';
   last_verified: string | null;
   is_published: boolean;

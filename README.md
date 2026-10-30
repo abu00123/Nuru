@@ -29,6 +29,7 @@ Refugees and displaced people considering voluntary return often cannot find rel
 **Admin — authenticated access only**
 - Log in via JWT-authenticated admin panel
 - Create, edit, and publish information entries
+- Source name and URL required before an entry can be published
 - Manage categories and destinations
 - View and update submitted reports
 
@@ -52,7 +53,8 @@ Nuru uses an open-access model for public information. Refugees and other users 
 ## System Architecture
 
 ```
-Browser (React + TypeScript)
+Browser (React + TypeScript — public + admin)
+React Native / Expo (mobile prototype)
           ↕ HTTP / JSON (Axios)
 Django REST Framework (port 8000)
           ↕ SQL
@@ -192,6 +194,114 @@ npm run dev
 ```
 
 Frontend runs at: `http://localhost:5173`
+
+## FR04 Source Dates
+
+Entries store an optional source publication date, displayed as **Unknown** when
+absent. This is the cited source's publication date, not the entry creation date.
+The public API's `last_verified` value and the admin's current source-check date
+are derived from a suitable source review for the current content version.
+Older manually entered dates are retained in storage for compatibility but are
+not used as evidence of a current-version check. Clients cannot set the derived date.
+
+Set source publication dates through Django admin or the React information editor.
+Changing a date creates a new content version and requires a new review before
+publication. Revision snapshots preserve dates saved after this upgrade. No source
+publication dates are inferred for existing entries.
+
+Apply `python manage.py migrate` from `backend/` before using these fields.
+Four date tests cover missing dates, current-version reviews and invalidation after
+edits, saved publication dates and snapshots, and invalid/manual date inputs.
+The combined suite has 28 passing tests using SQLite; the frontend production build
+also passes. PostgreSQL and browser validation should be recorded separately.
+
+## FR02 Keyword Search
+
+Keyword search matches entry titles, summaries, and full content without regard to
+case. Reviewed Kirundi, Kinyarwanda, and Kiswahili translations are searched across
+the same fields. Unreviewed translations do not supply matches, and unpublished
+entries remain hidden from public users. A search with no matches returns an empty
+list, displayed as **No information found** in Explore.
+
+Four search tests cover English title/summary/content matches, reviewed translation
+content in all three languages, exclusion of drafts and unreviewed translations,
+and empty results. Run `python manage.py test --settings=config.test_settings --noinput`
+from `backend/` for the combined 24-test suite (SQLite).
+
+## FR11 Report Resolution
+
+Reports use Open (`pending`), In progress (`reviewed`), and Resolved (`resolved`)
+statuses. Existing API status values are retained for compatibility. Administrators
+must enter resolution notes before resolving a report. The API and Django admin
+automatically record the responsible administrator and resolution date; clients
+cannot supply those values. Reopening clears the current resolution details, and
+changing the resolution notes records the administrator and time of that change.
+This stores the current outcome rather than a full report-event history.
+
+In Django admin, open **Reports**, select a report, enter **Resolution notes**, set
+**Status** to Resolved, and save. In the React admin dashboard, enter resolution
+notes beside the report before selecting Resolved. The reviewer and date appear
+after saving. Existing resolved reports are not assigned invented attribution;
+open and complete their resolution details as needed.
+
+Apply the new reports migration with `python manage.py migrate`. Run the combined
+19-test API, model, and admin suite with
+`python manage.py test --settings=config.test_settings --noinput` from `backend/`.
+The five report tests cover required notes, server-owned attribution, reopening,
+public submission restrictions, and the Django admin resolution workflow.
+
+## FR12 Revision History
+
+Article creation and substantive edits preserve saved content in version snapshots,
+including source details, translations, guides, and category/destination labels.
+In Django admin, open an information entry and follow a link in **Entry revisions**,
+or open **Entry revisions** from the admin home. Each read-only revision displays
+its saved content and the source reviews for that version, including reviewer,
+review date, outcome, and notes. Administrators need view permission for entry
+revisions; superusers already have it.
+
+Apply the upgrade from `backend/` with the virtual environment activated:
+
+```powershell
+python manage.py migrate
+```
+
+The migration captures each existing entry's current version. Previously overwritten
+versions cannot be recovered. Capture time is when the snapshot was stored, not an
+inferred historical edit date. Entries with revision history cannot be hard-deleted;
+unpublish them to retain their history. Bulk ORM updates bypass snapshot creation;
+use the admin or API editing workflow.
+
+Revision tests cover preservation of earlier text and nested guide content, unchanged
+saves, partial saves, upgrade capture, and admin-only read-only inspection with
+matching source reviews. The combined FR09/FR12 suite contains 14 tests.
+
+## FR09 Automated Tests
+
+From `backend/`, with the virtual environment activated, run:
+
+```powershell
+python manage.py test --settings=config.test_settings --noinput
+```
+
+This uses an isolated in-memory SQLite database, applies the project migrations,
+and leaves the configured PostgreSQL database untouched. It is a local workflow
+check, not PostgreSQL compatibility or performance evidence. To test against a
+configured PostgreSQL server with test-database creation permissions, run
+`python manage.py test --noinput`.
+
+The nine API integration tests cover rejection of publication without a suitable
+review, source requirements, review attribution, successful publication, rejection
+of substantive edits that reuse an old review, draft editing and fresh review
+before republication, public draft visibility, and administrative permissions.
+
+When changing published content, uncheck **Published** and save the revised draft,
+record a suitable source review for its new version, then publish again. Attempting
+to save substantive changes while keeping the entry published is rejected.
+
+Validation: all nine tests passed using the isolated SQLite settings. The tests
+initially exposed acceptance of published content edits using the pre-edit version's
+review; publication validation now checks the version that will be saved.
 
 ## API Endpoints
 
@@ -437,6 +547,22 @@ Admin publishes → PostgreSQL stores → React fetches → User reads → User 
    ```
 6. Create a Render PostgreSQL database and link it
 
+## Mobile Prototype
+
+A React Native + Expo companion app (`nuru-mobile/`) shares the same Django REST API. It targets Android and iOS but has not yet been verified on a physical device or emulator.
+
+Features implemented:
+- Browse, search, and filter published information by category and destination
+- Read full entries with verification status, date, and source links
+- Submit reports via the existing anonymous endpoint
+- Save article IDs on the device (bookmarks — requires a live connection to read content)
+- Language selector and step guides per article
+- Android hardware back button and safe area support
+
+Component structure: `AppContent` manages navigation and screen state. Separate components handle language selection (`LanguageSelector`), saved articles (`SavedArticles`), article actions (`ArticleActions`), and step guides (`StepGuide`). Administration remains in the web app; no login is required for public mobile features.
+
+Offline content caching, push notifications, and store releases are future work.
+
 ## Repository Structure
 
 ```
@@ -448,6 +574,9 @@ nuru/
 │   │   ├── services/
 │   │   └── types/
 │   └── package.json
+├── nuru-mobile/
+│   ├── src/
+│   └── App.tsx
 ├── backend/
 │   ├── config/
 │   ├── information/
@@ -471,6 +600,6 @@ The initial MVP uses English as the primary interface language. Multilingual sup
 - AI-assisted content verification
 - WhatsApp and SMS access for low-connectivity users
 - Map integration showing destination conditions
-- Offline-first mobile experience
+- Offline-first mobile experience (content caching — mobile prototype implemented but caching not yet added)
 - Advanced role-based access control
 - Automated source verification

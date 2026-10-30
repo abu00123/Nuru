@@ -13,21 +13,29 @@ export default function InformationDetail() {
   const { id } = useParams<{ id: string }>();
   const [originalEntry, setEntry] = useState<InformationEntry | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     let active = true;
     setLoading(true);
     setEntry(null);
+    setError('');
     if (id) {
       getInformationById(Number(id))
         .then(r => { if (active) setEntry(r.data.is_published ? r.data : null); })
-        .catch(() => { if (active) setEntry(null); })
+        .catch((err: { response?: { status?: number } }) => {
+          if (active) {
+            setEntry(null);
+            if (err.response?.status !== 404) setError('Unable to load this information. Please try again shortly.');
+          }
+        })
         .finally(() => { if (active) setLoading(false); });
     } else setLoading(false);
     return () => { active = false; };
   }, [id]);
 
   if (loading) return <p style={styles.state}>{t("Loading...")}</p>;
+  if (error) return <p role="alert" style={styles.state}>{error}</p>;
   const entry = originalEntry ? localizeArticle(originalEntry,currentLanguage()) : null;
   if (!entry) return <p style={styles.state}>{t("Information not found.")}</p>;
 
@@ -45,9 +53,7 @@ export default function InformationDetail() {
           <ArticleActions entry={entry} />
           <div style={styles.badges}>
             <StatusBadge status={entry.verification_status} />
-            {entry.last_verified && (
-              <span style={styles.date}>{t("Last checked:")}{' '}{new Date(entry.last_verified).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-            )}
+            <span style={styles.date}>{t("Last checked:")}{' '}{entry.last_verified ? new Date(`${entry.last_verified}T00:00:00`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Not yet checked for this version'}</span>
           </div>
         </div>
 
@@ -68,6 +74,9 @@ export default function InformationDetail() {
             </p>
           </section>
         )}
+        <p>Source publication date: {entry.source_publication_date
+          ? new Date(`${entry.source_publication_date}T00:00:00`).toLocaleDateString('en-GB')
+          : 'Unknown'}</p>
 
         <Link to={`/report/${entry.id}`} style={styles.reportBtn}>{t("Report outdated information")}</Link>
       </div>

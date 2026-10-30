@@ -6,4 +6,8 @@ export interface Report {
   comment: string;
   status: 'pending' | 'reviewed' | 'resolved';
   created_at: string;
+  resolution_notes: string;
+  resolved_by: number | null;
+  resolved_by_name: string | null;
+  resolved_at: string | null;
 }

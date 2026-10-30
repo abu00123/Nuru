@@ -9,16 +9,33 @@ import StatusBadge from '../components/StatusBadge';
 export default function AdminDashboard() {
   const [entries, setEntries] = useState<InformationEntry[]>([]);
   const [reports, setReports] = useState<Report[]>([]);
+  const [resolutionNotes, setResolutionNotes] = useState<Record<number, string>>({});
+  const [reportError, setReportError] = useState('');
+  const [savingReport, setSavingReport] = useState<number | null>(null);
 
   useEffect(() => {
     getAllInformation().then(r => setEntries(r.data));
     getReports().then(r => setReports(r.data));
   }, []);
 
-  const handleStatusChange = (id: number, status: Report['status']) => {
-    updateReportStatus(id, status).then(r =>
-      setReports(prev => prev.map(rep => rep.id === id ? r.data : rep))
-    );
+  const handleStatusChange = async (id: number, status: Report['status']) => {
+    const report = reports.find(item => item.id === id)!;
+    const notes = resolutionNotes[id] ?? report.resolution_notes ?? '';
+    setReportError('');
+    if (status === 'resolved' && !notes.trim()) {
+      setReportError('Enter resolution notes before marking the report resolved.');
+      return;
+    }
+    setSavingReport(id);
+    try {
+      const response = await updateReportStatus(id, status, notes);
+      setReports(prev => prev.map(rep => rep.id === id ? response.data : rep));
+      setResolutionNotes(prev => ({...prev, [id]: response.data.resolution_notes}));
+    } catch {
+      setReportError('Could not update the report. Check your connection and try again.');
+    } finally {
+      setSavingReport(null);
+    }
   };
 
   return (
@@ -53,19 +70,29 @@ export default function AdminDashboard() {
         ))}
 
         <h2 style={{ ...styles.sectionTitle, marginTop: '2rem' }}>Recent Reports</h2>
-        {reports.slice(0, 5).map(r => (
+        {reportError && <p role="alert">{reportError}</p>}
+        {reports.map(r => (
           <div key={r.id} style={styles.row}>
             <div>
               <p style={styles.entryTitle}>{r.information_title}</p>
               <p style={styles.entryMeta}>{r.reason} • {new Date(r.created_at).toLocaleDateString()}</p>
+              <p>{r.comment}</p>
+              <label htmlFor={`resolution-${r.id}`}>Resolution notes</label>
+              <textarea id={`resolution-${r.id}`} value={resolutionNotes[r.id] ?? r.resolution_notes ?? ''}
+                onChange={event => setResolutionNotes(prev => ({...prev, [r.id]: event.target.value}))}
+                rows={3} style={{display: 'block', maxWidth: '100%'}} />
+              {r.resolved_at && <p>Resolved by {r.resolved_by_name} on {new Date(r.resolved_at).toLocaleString()}</p>}
+              {r.status === 'resolved' && <button disabled={savingReport !== null} onClick={() => handleStatusChange(r.id, 'resolved')}>Save resolution notes</button>}
             </div>
             <select
               value={r.status}
+              aria-label={`Status for report ${r.id}`}
+              disabled={savingReport !== null}
               onChange={e => handleStatusChange(r.id, e.target.value as Report['status'])}
               style={{ ...styles.statusPill, backgroundColor: r.status === 'pending' ? '#fff8e1' : r.status === 'reviewed' ? '#e0f0ff' : '#e6f4ed', color: r.status === 'pending' ? '#b45309' : r.status === 'reviewed' ? '#1d4ed8' : '#1a7a45', border: 'none', cursor: 'pointer' }}
             >
-              <option value="pending">pending</option>
-              <option value="reviewed">reviewed</option>
+              <option value="pending">Open</option>
+              <option value="reviewed">In progress</option>
               <option value="resolved">resolved</option>
             </select>
           </div>

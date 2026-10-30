@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Destination, InformationEntry, SourceReview
+from .models import Category, Destination, InformationEntry, SourceReview, SUBSTANTIVE_FIELDS
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -27,6 +27,7 @@ class InformationEntrySerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
     destination_name = serializers.CharField(source='destination.__str__', read_only=True)
     latest_review = serializers.SerializerMethodField()
+    last_verified = serializers.DateField(source='current_source_check_date', read_only=True)
 
     def get_latest_review(self, obj):
         review = obj.source_reviews.first()
@@ -54,6 +55,12 @@ class InformationEntrySerializer(serializers.ModelSerializer):
                 errors['source_name'] = 'A source name is required before publishing. This confirms the entry reflects its supporting material.'
             if self.instance:
                 current_version = self.instance.content_version
+                # Validate the version that will be saved, not the pre-edit version.
+                if any(
+                    field in attrs and attrs[field] != getattr(self.instance, field)
+                    for field in SUBSTANTIVE_FIELDS
+                ):
+                    current_version += 1
                 review = self.instance.source_reviews.filter(
                     entry_version=current_version,
                     outcome='suitable',

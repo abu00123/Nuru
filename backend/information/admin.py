@@ -1,6 +1,49 @@
 from django.contrib import admin
 from django import forms
-from .models import Category, Destination, InformationEntry, SourceReview
+from django.utils.html import format_html, format_html_join
+import json
+from .models import Category, Destination, InformationEntry, SourceReview, EntryRevision
+
+
+class EntryRevisionInline(admin.TabularInline):
+    model = EntryRevision
+    fields = ['version', 'captured_at']
+    readonly_fields = fields
+    extra = 0
+    can_delete = False
+    show_change_link = True
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(EntryRevision)
+class EntryRevisionAdmin(admin.ModelAdmin):
+    list_display = ['entry', 'version', 'captured_at']
+    readonly_fields = ['entry', 'version', 'captured_at', 'saved_content', 'source_reviews']
+    fields = readonly_fields
+    search_fields = ['entry__title']
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    @admin.display(description='Saved content')
+    def saved_content(self, obj):
+        return format_html('<pre style="white-space:pre-wrap">{}</pre>', json.dumps(obj.snapshot, indent=2, ensure_ascii=False))
+
+    @admin.display(description='Source reviews for this version')
+    def source_reviews(self, obj):
+        reviews = obj.entry.source_reviews.filter(entry_version=obj.version).select_related('reviewed_by')
+        return format_html_join('', '<p>{} | {} | {}<br>{}</p>', (
+            (review.reviewed_by, review.reviewed_at, review.get_outcome_display(), review.notes)
+            for review in reviews
+        )) or 'No source reviews recorded for this version.'
 
 
 class SourceReviewInline(admin.TabularInline):
@@ -88,11 +131,12 @@ class InformationTranslationForm(forms.ModelForm):
 @admin.register(InformationEntry)
 class InformationEntryAdmin(admin.ModelAdmin):
     form = InformationTranslationForm
-    inlines = [SourceReviewInline]
-    list_display = ['title', 'category', 'destination', 'verification_status', 'is_published', 'last_verified', 'content_version']
+    inlines = [SourceReviewInline, EntryRevisionInline]
+    list_display = ['title', 'category', 'destination', 'verification_status', 'is_published', 'current_source_check_date', 'content_version']
     list_filter = ['verification_status', 'is_published', 'category']
     search_fields = ['title', 'summary', 'content']
-    readonly_fields = ['content_version']
+    readonly_fields = ['content_version', 'current_source_check_date']
+    exclude = ['last_verified']
 
     def save_formset(self, request, form, formset, change):
         instances = formset.save(commit=False)

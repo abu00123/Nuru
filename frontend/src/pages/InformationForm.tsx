@@ -33,7 +33,7 @@ export default function InformationForm() {
   const [form, setForm] = useState({
     title: '', summary: '', content: '', category: '', destination: '',
     source_name: '', source_url: '', verification_status: 'verified',
-    last_verified: '', is_published: false,
+    source_publication_date: '', is_published: false,
   });
 
   const loadEntry = (entryId: number) => {
@@ -48,7 +48,7 @@ export default function InformationForm() {
         category: String(e.category), destination: String(e.destination),
         source_name: e.source_name, source_url: e.source_url,
         verification_status: e.verification_status,
-        last_verified: e.last_verified || '', is_published: e.is_published,
+        source_publication_date: e.source_publication_date || '', is_published: e.is_published,
       });
     });
   };
@@ -76,7 +76,7 @@ export default function InformationForm() {
     setError(''); setSubmitting(true);
     const normalize = (value: Guide): Guide => ({...value,documents: value.documents?.map(document=>document.trim()).filter(Boolean)});
     const translated = Object.fromEntries(Object.entries(guideTranslations).map(([code,value])=>[code,{...value,guide:normalize(value.guide)}]));
-    const payload = {...form,last_verified:form.last_verified || null,guide:normalize(guide),guide_translations:translated};
+    const payload = {...form,source_publication_date:form.source_publication_date || null,guide:normalize(guide),guide_translations:translated};
     try {
       if (isEdit) {
         await api.put(`/information/${id}/`, payload);
@@ -159,8 +159,8 @@ export default function InformationForm() {
               </select>
             </div>
             <div style={styles.field}>
-              <label style={styles.label}>Last Verified</label>
-              <input type="date" name="last_verified" value={form.last_verified} onChange={handleChange} style={styles.input} />
+              <label style={styles.label}>Source publication date (leave blank if unknown)</label>
+              <input type="date" name="source_publication_date" value={form.source_publication_date} onChange={handleChange} style={styles.input} />
             </div>
           </div>
 

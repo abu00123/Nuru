@@ -1,0 +1,142 @@
+[
+  {
+    "path": "frontend/src/App.tsx",
+    "originalHash": "3734FFAA7B6A95EFFC48111E672E387B47413EBDCD864223868947D539247079",
+    "updatedHash": "6DBFCC1B883F316E09C076F4F111F753B640B371E2894C39C62B62AC3BD608A6"
+  },
+  {
+    "path": "frontend/src/components/ArticleActions.tsx",
+    "originalHash": null,
+    "updatedHash": "06A6BF2E1E858F3C820E8D873455EBB71532F8CF5621B0C158D38183A9D99C00"
+  },
+  {
+    "path": "frontend/src/components/GuideEditor.tsx",
+    "originalHash": null,
+    "updatedHash": "4DEF8D1F0D4916900F327BE56C969C01671A3E49263DDDA9EDC856181B519288"
+  },
+  {
+    "path": "frontend/src/components/InformationCard.tsx",
+    "originalHash": "13BAB59E8695FEA941B2C56DC757C6DEFE719527D8B5CBB1FB3E304DDBF24408",
+    "updatedHash": "F7CCF4A7D30789AA19DB324454E0498525E3495AEB12264E9B748AE4C3FD6488"
+  },
+  {
+    "path": "frontend/src/components/Navbar.tsx",
+    "originalHash": "9F2268D046D42F01D61CC34DE39D89262E05576C7A9E0D3DF7E16CDF05BFE952",
+    "updatedHash": "05D7C7ECDC1AC97FC87B88B3BB19B2F0A9BD037E2FC0DAD0B458FE91F2FFC66D"
+  },
+  {
+    "path": "frontend/src/components/StepGuide.tsx",
+    "originalHash": null,
+    "updatedHash": "5B182245FE8D76BEB47C2D5BAEE6186E4A7B1CC76DE45229113EA4D6073F8481"
+  },
+  {
+    "path": "frontend/src/features/core.ts",
+    "originalHash": null,
+    "updatedHash": "53C24A253BFD21BC3596834EBF89139D4151F5961375D00E3678D5040006D969"
+  },
+  {
+    "path": "frontend/src/features/saved.ts",
+    "originalHash": null,
+    "updatedHash": "C55640FDFAD7BDF934A661F61A77F904F34C1BA8450FF023C62E82394D5E5FE1"
+  },
+  {
+    "path": "frontend/src/features/share.ts",
+    "originalHash": null,
+    "updatedHash": "43F31455759029F829B4C9235415288EBE7C269BD9E0360C89E63F2B9F4F2612"
+  },
+  {
+    "path": "frontend/src/i18n/core.ts",
+    "originalHash": "20FF7D8D48A99C294B92D13EC6BDE4AD3E97258886E1827E40A69C563F116B3D",
+    "updatedHash": "8F75F997B91649A32C7922FAA3414B447A9157205C7384B169D3FF66FA9CD2F7"
+  },
+  {
+    "path": "frontend/src/pages/InformationDetail.tsx",
+    "originalHash": "B68B55B22C4A3E99AA26416C96D176D2AC440917F8F70ED33759673F469AB064",
+    "updatedHash": "1C755469919A877DDC4C0995EC64278B385DC7488B17E7304BAD4F3679964D40"
+  },
+  {
+    "path": "frontend/src/pages/InformationForm.tsx",
+    "originalHash": "01B09773F1ED312AF517161E3DAB38785E23FF92F7635C4621027B60607A3219",
+    "updatedHash": "01B7A087304A110944FC66FAE5580D6BC12AE101073389594AE185188E1B58BA"
+  },
+  {
+    "path": "frontend/src/pages/Saved.tsx",
+    "originalHash": null,
+    "updatedHash": "98F0989FE274B7E84CB1EE4184D6B3BFB940203CB1138667F6F6D784C70B3AD1"
+  },
+  {
+    "path": "frontend/src/services/informationService.ts",
+    "originalHash": "E427975FB032CDC982E83948158B9648757C769B4797D924A7F80AC359902450",
+    "updatedHash": "0660B6A70A2A2533CDE1E23A092B31003B71EDCDD16E481424AA46CFE7E7B0C8"
+  },
+  {
+    "path": "frontend/src/types/information.ts",
+    "originalHash": "B50BF88BE035FB50F57CF525D7D7DC2BDD2DB2F155F8CA5B0FE90E47B44688DC",
+    "updatedHash": "1755DAB89D38686573978988F5647254CAE4706FDFCDB3B01463F9AD62E54A64"
+  },
+  {
+    "path": "nuru-mobile/App.tsx",
+    "originalHash": "43B144F941DB4A6986D54DA5E85CA0B637B9359879C8DCA265ADBF6B735C7069",
+    "updatedHash": "2AAAEFE9399CF542213057CB63846B86B58AC8A81C5EEA7008182EDFB2DF8E87"
+  },
+  {
+    "path": "nuru-mobile/src/ArticleActions.tsx",
+    "originalHash": null,
+    "updatedHash": "FD4DD14CD1B55915B03D94D439A6C282DE0A29A1F23627AF823E8D9C4C2B385C"
+  },
+  {
+    "path": "nuru-mobile/src/features/core.ts",
+    "originalHash": null,
+    "updatedHash": "53C24A253BFD21BC3596834EBF89139D4151F5961375D00E3678D5040006D969"
+  },
+  {
+    "path": "nuru-mobile/src/features/saved.ts",
+    "originalHash": null,
+    "updatedHash": "C956E2F69345BFF2B52792AA1670944BB88A07A6305AF65557E629BC51F5DB62"
+  },
+  {
+    "path": "nuru-mobile/src/i18n/core.ts",
+    "originalHash": "20FF7D8D48A99C294B92D13EC6BDE4AD3E97258886E1827E40A69C563F116B3D",
+    "updatedHash": "8F75F997B91649A32C7922FAA3414B447A9157205C7384B169D3FF66FA9CD2F7"
+  },
+  {
+    "path": "nuru-mobile/src/SavedArticles.tsx",
+    "originalHash": null,
+    "updatedHash": "277076FD349B0BABB54AE4763FE2EEBBD56D37548DDE944AE749115B00ACF762"
+  },
+  {
+    "path": "nuru-mobile/src/StepGuide.tsx",
+    "originalHash": null,
+    "updatedHash": "59B91F4A1753E2CC87166D421681BD0317CEFC09A95AE499064CA21B14713EAD"
+  },
+  {
+    "path": "nuru-mobile/src/types.ts",
+    "originalHash": "180E004100019DF66D54AB46534E62DFDD913DE30D54D3CC4A3FA81A93B28A4A",
+    "updatedHash": "BCB238A3FEE9E570237F71D74CAD4103E30428128EE204AA4D015F13C9C2A35B"
+  },
+  {
+    "path": "backend/information/guides.py",
+    "originalHash": null,
+    "updatedHash": "054AF803CA048EE81FF5F2A73D0DBB86359FE7E25056D2BD2697E3912562F6DA"
+  },
+  {
+    "path": "backend/information/migrations/0003_informationentry_guides.py",
+    "originalHash": null,
+    "updatedHash": "03319BB668141CBB2E0EC56676145FC8D4D24D2EE17F246C96A1077071D44FE6"
+  },
+  {
+    "path": "backend/information/models.py",
+    "originalHash": "B10EF10E565C8F0A9669B1DFF8CEDB3FE47C6E8B263F545EDE0101723EAAA6A6",
+    "updatedHash": "C657C1ACE88B0869198B7E38FAF7E6A326A0B0664ADF2D0D3953583215DD07C6"
+  },
+  {
+    "path": "backend/information/serializers.py",
+    "originalHash": "5127053632892CFE0AC55D68D8088F5B4929FD11A4F527A944A097F9DDED05FE",
+    "updatedHash": "77DBC8501D95C70AE4CC8189DB8F0389E75529B9780001F712B03C6262082159"
+  },
+  {
+    "path": "backend/information/views.py",
+    "originalHash": "D7EF6171AA5904741243B6634A7969FC8F83BAA3EB0A999C44E86735D970DDF4",
+    "updatedHash": "AF797F64B32F53133794C0C126F859B8CD88534A836166C30AE42F4FB3A49630"
+  }
+]
