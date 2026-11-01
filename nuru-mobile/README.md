@@ -58,12 +58,9 @@ npx expo-doctor
 
 On a phone/emulator: browse, search, filter, open an entry and source, submit a report, confirm it in web administration, refresh after editing an entry on the web, and test unavailable backend/retry and Android back navigation.
 
-## Backend issues discovered during inspection
+## Backend access controls
 
-These exist in the supplied backend and have not been changed in this companion project:
-
-1. `InformationEntryDetailView` uses `InformationEntry.objects.all()` with public GET access, so a known draft ID can be fetched publicly. Scope public detail queries to `is_published=True`, retaining full access for staff. The mobile UI declines unpublished detail responses, but the server must enforce this too.
-2. `ReportSerializer` exposes all model fields, including `status`. Make moderation status read-only to prevent anonymous callers choosing a report's review status.
+The shared backend now limits public article detail requests to published entries; staff can still inspect drafts. Report creation rejects non-open statuses, and resolution attribution fields are server-owned. These rules are enforced in the backend and should remain covered by API tests as the mobile client evolves.
 
 ## Project structure
 
