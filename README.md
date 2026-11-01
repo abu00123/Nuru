@@ -95,6 +95,14 @@ nuru-mobile/   Expo/React Native companion prototype
 docs/          screenshots, wireframes, mockups, technical report
 ```
 
+## API endpoint added in FR09
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/information/<id>/reviews/` | Admin | Record a source review for an entry version |
+
+Publication is rejected unless the entry has a non-empty `source_name` and a `SourceReview` with `outcome=suitable` matching the current `content_version`.
+
 ## Screenshots
 
 Existing UI screenshots are in [`docs/screenshots/`](docs/screenshots/). They illustrate selected web screens; they do not establish cross-browser or device compatibility.
