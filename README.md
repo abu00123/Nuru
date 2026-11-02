@@ -4,8 +4,8 @@ Nuru is a full-stack information service for people considering voluntary return
 
 ## Submission links
 
-- **Walkthrough video:** [Google Drive demo folder](https://drive.google.com/drive/folders/1zUbNJ20X7dENxw5n-wL5GDB7oSWUOisk?usp=drive_link) (confirm the video is uploaded and accessible before submission).
-- **Technical report:** [Nuru technical report (PDF)](docs/technical-report.pdf).
+- **Walkthrough video:** [Google Drive demo video](https://drive.google.com/file/d/1u7F_QXeKK7SQDPRc-dq_H22Wl6QGT_-i/view?usp=sharing)
+- **Technical report:** [Nuru technical report](https://docs.google.com/document/d/1dSrMpjhYrSkfQ1tBZKKT9QQ-faBzZjz20Vvo7e178H8/edit?usp=sharing)
 - **Repository:** [github.com/abu00123/Nuru](https://github.com/abu00123/Nuru).
 
 ## Scope and current status
@@ -95,7 +95,7 @@ nuru-mobile/   Expo/React Native companion prototype
 docs/          screenshots, wireframes, mockups, technical report
 ```
 
-## API endpoint added in FR09
+## Source review API
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
