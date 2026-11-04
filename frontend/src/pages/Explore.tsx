@@ -49,10 +49,28 @@ export default function Explore() {
     setSearchParams(params, { replace: true });
   };
 
+  const images = ['/hero-1.jpg', '/hero-2.jpg', '/hero-3.jpg', '/hero-4.jpg'];
+  const [heroIndex, setHeroIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => setHeroIndex(i => (i + 1) % images.length), 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main style={styles.main}>
+      <div style={{ ...styles.hero, backgroundImage: `url(${images[heroIndex]})` }}>
+        <div style={styles.heroOverlay}>
+          <h1 style={styles.heroTitle}>{t("Reliable information for informed decisions")}</h1>
+          <p style={styles.heroCopy}>{t("Source-verified guidance for people considering voluntary return.")}</p>
+        </div>
+        <div style={styles.heroDots}>
+          {images.map((_, i) => (
+            <button key={i} onClick={() => setHeroIndex(i)} style={{ ...styles.dot, opacity: i === heroIndex ? 1 : 0.4 }} aria-label={`Image ${i + 1}`} />
+          ))}
+        </div>
+      </div>
       <div style={styles.container}>
-        <h1 style={styles.title}>{t("Explore Information")}</h1>
+        <h2 style={styles.title}>{t("Explore Information")}</h2>
         <div style={styles.controls}>
           <SearchBar onSearch={q => updateParam('search', q)} placeholder={t("Search...")} initialValue={search} />
           <FilterBar
@@ -80,6 +98,12 @@ export default function Explore() {
 
 const styles: Record<string, React.CSSProperties> = {
   main: { backgroundColor: '#f8faf9', minHeight: '80vh' },
+  hero: { position: 'relative', height: 340, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'background-image 0.8s ease' },
+  heroOverlay: { position: 'absolute', inset: 0, backgroundColor: 'rgba(20,50,35,0.55)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 3rem', gap: '0.75rem' },
+  heroTitle: { color: '#fff', fontSize: '2rem', fontWeight: 700, margin: 0, maxWidth: 600 },
+  heroCopy: { color: '#d4ede0', fontSize: '1.05rem', margin: 0, maxWidth: 500 },
+  heroDots: { position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 8 },
+  dot: { width: 10, height: 10, borderRadius: '50%', backgroundColor: '#fff', border: 'none', cursor: 'pointer', padding: 0 },
   container: { maxWidth: 800, margin: '0 auto', padding: '2rem 1.5rem' },
   title: { fontSize: '1.5rem', fontWeight: 700, color: '#1a3c2e', marginBottom: '1.5rem' },
   controls: { display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' },
