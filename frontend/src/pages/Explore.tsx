@@ -99,13 +99,13 @@ export default function Explore() {
 const styles: Record<string, React.CSSProperties> = {
   main: { backgroundColor: '#f8faf9', minHeight: '80vh' },
   hero: { position: 'relative', height: 340, backgroundSize: 'cover', backgroundPosition: 'center', transition: 'background-image 0.8s ease' },
-  heroOverlay: { position: 'absolute', inset: 0, backgroundColor: 'rgba(20,50,35,0.55)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 3rem', gap: '0.75rem' },
+  heroOverlay: { position: 'absolute', inset: 0, backgroundColor: 'rgba(20,80,140,0.55)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '2rem 3rem', gap: '0.75rem' },
   heroTitle: { color: '#fff', fontSize: '2rem', fontWeight: 700, margin: 0, maxWidth: 600 },
   heroCopy: { color: '#d4ede0', fontSize: '1.05rem', margin: 0, maxWidth: 500 },
   heroDots: { position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 8 },
   dot: { width: 10, height: 10, borderRadius: '50%', backgroundColor: '#fff', border: 'none', cursor: 'pointer', padding: 0 },
   container: { maxWidth: 800, margin: '0 auto', padding: '2rem 1.5rem' },
-  title: { fontSize: '1.5rem', fontWeight: 700, color: '#1a3c2e', marginBottom: '1.5rem' },
+  title: { fontSize: '1.5rem', fontWeight: 700, color: '#1a6fa8', marginBottom: '1.5rem' },
   controls: { display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' },
   state: { color: '#64748b', textAlign: 'center', padding: '2rem' },
 };
