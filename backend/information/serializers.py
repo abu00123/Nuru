@@ -46,7 +46,7 @@ class InformationEntrySerializer(serializers.ModelSerializer):
             if missing:
                 raise serializers.ValidationError({'guide_translations': f'{language}: complete all English guide sections before marking the translation reviewed.'})
 
-        # Publication enforcement (FR09)
+        # Publication enforcement: require source name and a suitable review
         publishing = attrs.get('is_published', getattr(self.instance, 'is_published', False))
         if publishing:
             errors = {}
