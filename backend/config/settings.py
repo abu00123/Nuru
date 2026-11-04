@@ -61,7 +61,6 @@ DATABASES = {
     'default': dj_database_url.config(
         default=f"postgresql://{os.getenv('DB_USER', 'postgres')}:{os.getenv('DB_PASSWORD', '')}@{os.getenv('DB_HOST', 'localhost')}:{os.getenv('DB_PORT', '5432')}/{os.getenv('DB_NAME', 'nuru')}",
         conn_max_age=600,
-        ssl_require=os.getenv('DB_HOST', 'localhost') != 'localhost',
     )
 }
 
