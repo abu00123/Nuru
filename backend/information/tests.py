@@ -145,7 +145,7 @@ class RevisionHistoryTests(TestCase):
 
 
 class PublicationWorkflowTests(APITestCase):
-    """Exercise FR09 through the API, including permissions and public access."""
+    """Test the source review and publication workflow through the API, including permissions and public access."""
 
     @classmethod
     def setUpTestData(cls):
