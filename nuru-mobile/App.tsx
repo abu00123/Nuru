@@ -11,9 +11,17 @@ import * as api from './src/api';
 import type { Category, Destination, Information, Reason } from './src/types';
 
 const reasons: [Reason, string][] = [['outdated', 'Information appears outdated'], ['incorrect', 'Information is incorrect'], ['incomplete', 'Information is incomplete'], ['other', 'Other']];
-// Unsplash photos: rural landscape by Lei Hwang; supportive conversation by Vitaly Gariev.
-const homePhoto = { uri: 'https://images.unsplash.com/photo-1771772084783-9aa5353f76eb?auto=format&fit=crop&w=1200&q=80' };
-const supportPhoto = { uri: 'https://images.unsplash.com/photo-1758273240360-76b908e7582a?auto=format&fit=crop&w=1000&q=80' };
+const homePhoto = require('./assets/images/combonianos_brasil-sudan-2324778_1920.jpg');
+const educationPhoto = require('./assets/images/cordens-teacher-476342_1920.jpg');
+const shelterPhoto = require('./assets/images/rcp24-shelter-10402022_1920.jpg');
+const migrationPhoto = require('./assets/images/trasmo-migration-2698946_1920.jpg');
+function articlePhoto(category?: string | null, title?: string | null) {
+  const topic = `${category ?? ''} ${title ?? ''}`.toLowerCase();
+  if (/education|school|training|learning|teacher/.test(topic)) return educationPhoto;
+  if (/housing|shelter|accommodation|residence/.test(topic)) return shelterPhoto;
+  if (/migration|return|travel|transport|journey/.test(topic)) return migrationPhoto;
+  return homePhoto;
+}
 const message = (e: unknown) => e instanceof Error ? e.message : t("Unable to connect. Please try again.");
 function Button({ title, onPress, disabled = false }: { title: string; onPress: () => void; disabled?: boolean }) {
   return <Pressable accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} style={[s.button, disabled && { opacity: 0.5 }]}><Text style={s.buttonText}>{title}</Text></Pressable>;
@@ -99,7 +107,7 @@ function AppContent() {
         {reasons.map(([value, label]) => <Pressable accessibilityRole="radio" accessibilityState={{ checked: reason === value, disabled: sending }} disabled={sending} key={value} style={s.choice} onPress={() => setReason(value)}><Text style={s.copy}>{reason === value ? 'â—' : 'â—‹'} {t(label)}</Text></Pressable>)}
         <Text style={s.label}>{t("Comments (optional)")}</Text><TextInput accessibilityLabel={t("Report comments")} editable={!sending} multiline textAlignVertical="top" value={comment} onChangeText={setComment} style={[s.input, { minHeight: 120 }]} placeholder={t("Tell us what needs to be reviewed")} />
         {!!reportError && <Text accessibilityRole="alert" style={s.error}>{reportError}</Text>}<Button title={sending ? t("Submittingâ€¦") : t("Submit report")} disabled={sending} onPress={send} />
-      </>}</View> : <View style={s.card}><Image source={supportPhoto} accessibilityLabel={t("A supportive conversation")} style={s.detailImage} resizeMode="cover" />
+      </>}</View> : <View style={s.card}><Image source={articlePhoto(detail.category_name, detail.title)} accessibilityLabel={t("Information article image")} style={s.detailImage} resizeMode="cover" />
         <Text style={s.label}>{t(detail.category_name)} Â· {detail.destination_name}</Text><Text style={s.heading}>{detail.title}</Text><ArticleActions entry={detail} /><Text style={detail.verification_status === 'verified' ? s.verified : s.caution}>{t(detail.verification_status === 'verified' ? 'Verified' : detail.verification_status === 'outdated' ? 'Outdated' : 'Unverified')}</Text><Text style={s.copy}>{t("Last verified:")}{' '}{detail.last_verified ?? t("Not yet verified")}</Text><Text style={s.title}>{detail.summary}</Text><Text selectable style={s.content}>{detail.content}</Text>{detail.translationFallback && <Text style={s.caution}>{t('This article is shown in English because a reviewed translation is not available.')}</Text>}<StepGuide entry={rawDetail!} /><Text style={s.label}>{t("Source:")}{' '}{detail.source_name || t("Not provided")}</Text>
         {!!detail.source_url && <Button title={t("Open source")} onPress={() => { if (/^https?:\/\//i.test(detail.source_url)) Linking.openURL(detail.source_url).catch(() => setReportError(t("Unable to open the source link."))); else setReportError(t("This source link is unavailable.")); }} />}
         {!!reportError && <Text accessibilityRole="alert" style={s.error}>{reportError}</Text>}<Button title={t("Report an issue")} onPress={() => { setSent(false); setComment(''); setReason('outdated'); setReportError(''); setReport(true); }} />
