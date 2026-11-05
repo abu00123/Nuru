@@ -29,12 +29,12 @@ export default function Home() {
   return (
     <main style={styles.main}>
       <section style={styles.hero}>
+        <div style={styles.heroBg} />
         <div style={styles.heroText}>
-          <h1 style={styles.heading}>{t("Reliable information for people")}<br />{t("considering voluntary return.")}</h1>
-          <p style={styles.sub}>{t("Search verified information about safety, documents, housing, and more.")}</p>
+          <h1 style={styles.heading}>{t("Know before you go.")}</h1>
+          <p style={styles.sub}>{t("Verified information on safety, housing, healthcare and more — so you can return with confidence.")}</p>
           <SearchBar onSearch={q => { if (q) navigate(`/explore?search=${q}`); }} />
         </div>
-        <img src="/landing-hero.png" alt="People" style={styles.heroImage} />
       </section>
 
       <section style={styles.section}>
@@ -51,12 +51,12 @@ export default function Home() {
 
 const styles: Record<string, React.CSSProperties> = {
   main: { minHeight: '80vh', backgroundColor: '#f0f7ff' },
-  hero: { backgroundColor: '#1a6fa8', color: '#fff', padding: '3rem 2rem', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' },
-  heroText: { display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 480, flex: 1 },
+  hero: { position: 'relative', color: '#fff', padding: '5rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', minHeight: 420, overflow: 'hidden' },
+  heroBg: { position: 'absolute', inset: 0, backgroundImage: 'url(/landing-hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center right', filter: 'blur(2px) brightness(0.75)', transform: 'scale(1.04)' } as React.CSSProperties,
+  heroText: { position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 520, background: 'linear-gradient(to right, rgba(26,111,168,0.92) 60%, rgba(26,111,168,0) 100%)', padding: '2rem 3rem 2rem 2rem', borderRadius: 8 },
   heading: { fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 700, margin: 0, lineHeight: 1.3 },
   sub: { color: '#d0e8f8', fontSize: '1rem', margin: 0 },
-  heroImage: { width: 320, maxWidth: '100%', borderRadius: 12, objectFit: 'cover', flexShrink: 0 },
   section: { maxWidth: 900, margin: '0 auto', padding: '2.5rem 1.5rem' },
   sectionTitle: { fontSize: '1.3rem', fontWeight: 700, color: '#1a6fa8', marginBottom: '1.5rem' },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '1rem' },
+  grid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '1rem' },
 };
