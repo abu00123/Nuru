@@ -3,7 +3,7 @@ export default function Footer() {
   useLanguage();
   return (
     <footer style={styles.footer}>
-      <p style={styles.text}>© {new Date().getFullYear()} {t("Nuru — Reliable information for people considering voluntary return.")}</p>
+
     </footer>
   );
 }
