@@ -6,6 +6,7 @@ Nuru is a source-linked return information service. Public users browse publishe
 |---|---|
 | **Walkthrough video** | [Google Drive demo video](https://drive.google.com/file/d/1u7F_QXeKK7SQDPRc-dq_H22Wl6QGT_-i/view?usp=sharing) |
 | **Technical report** | [Nuru technical report](https://docs.google.com/document/d/1dSrMpjhYrSkfQ1tBZKKT9QQ-faBzZjz20Vvo7e178H8/edit?usp=sharing) |
+| **Figma designs** | [Nuru UI — web and mobile](https://www.figma.com/design/f4737lGzdytN9k3KqOwtzB) |
 | **Repository** | [github.com/abu00123/Nuru](https://github.com/abu00123/Nuru) |
 
 ---
