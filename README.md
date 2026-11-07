@@ -5,7 +5,7 @@ Nuru is a source-linked return information service. Public users browse publishe
 | | |
 |---|---|
 | **Walkthrough video** | [Google Drive demo video](https://drive.google.com/file/d/1u7F_QXeKK7SQDPRc-dq_H22Wl6QGT_-i/view?usp=sharing) |
-| **Technical report** | [Nuru technical report](https://docs.google.com/document/d/1dSrMpjhYrSkfQ1tBZKKT9QQ-faBzZjz20Vvo7e178H8/edit?usp=sharing) |
+| **Technical report** | [Nuru technical report](https://docs.google.com/document/d/1sJ603so59Ykvf2DY5sYJrU-QnyMbYSP9/edit?usp=sharing) |
 | **Figma designs** | [Nuru UI — web and mobile](https://www.figma.com/design/f4737lGzdytN9k3KqOwtzB) |
 | **Live app** | [nuru-kappa-jet.vercel.app](https://nuru-kappa-jet.vercel.app) |
 | **Live API (health check)** | [nuru-q34v.onrender.com/api/health](https://nuru-q34v.onrender.com/api/health) |
