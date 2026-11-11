@@ -118,7 +118,7 @@ function AppContent() {
 
   return (
     <SafeAreaView style={s.safe}>
-      <StatusBar barStyle="light-content" backgroundColor="#1a6fa8" />
+      <StatusBar barStyle="light-content" />
 
       {/* Header */}
       <View style={s.header}>
@@ -347,7 +347,7 @@ const s = StyleSheet.create({
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, paddingHorizontal: 18 },
   catCard: { width: '47%', aspectRatio: 4 / 3, borderRadius: 10, overflow: 'hidden', elevation: 3, shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 6 },
   catImg: { flex: 1, justifyContent: 'flex-end' },
-  catOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.35)', borderRadius: 10 },
+  catOverlay: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(0,0,0,0.35)', borderRadius: 10 },
   catLabel: { color: '#fff', fontWeight: '700', fontSize: 13, padding: 10, textShadowColor: 'rgba(0,0,0,0.5)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 3 },
   // Explore
   input: { borderWidth: 1, borderColor: '#d2dee6', backgroundColor: '#fff', borderRadius: 8, padding: 12, fontSize: 16, color: '#263f4e', marginHorizontal: 18 },
