@@ -42,6 +42,6 @@ const styles: Record<string, React.CSSProperties> = {
   title: { margin: '0 0 0.5rem', fontSize: '1rem', color: '#1e293b' },
   summary: { margin: '0 0 1rem', fontSize: '0.9rem', color: '#475569', lineHeight: 1.5 },
   footer: { display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' },
-  date: { fontSize: '0.8rem', color: '#94a3b8' },
+  date: { fontSize: '0.8rem', color: '#475569' },
   link: { marginLeft: 'auto', color: '#1a6fa8', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none' },
 };

@@ -95,7 +95,7 @@ const styles: Record<string, React.CSSProperties> = {
   destination: { fontSize: '0.8rem', color: '#64748b' },
   title: { fontSize: '1.4rem', fontWeight: 700, color: '#1e293b', margin: '0 0 1rem' },
   badges: { display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' },
-  date: { fontSize: '0.85rem', color: '#94a3b8' },
+  date: { fontSize: '0.85rem', color: '#475569' },
   section: { background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8, padding: '1.5rem', marginBottom: '1rem' },
   sectionTitle: { fontSize: '1rem', fontWeight: 700, color: '#1a3c2e', marginBottom: '0.75rem' },
   content: { color: '#475569', lineHeight: 1.7, margin: 0 },
