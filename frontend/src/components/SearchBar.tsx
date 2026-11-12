@@ -34,6 +34,7 @@ export default function SearchBar({ onSearch, placeholder = t("Search informatio
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
+        aria-label={placeholder}
         style={styles.input}
       />
       <button type="submit" style={styles.button}>{t("Search")}</button>

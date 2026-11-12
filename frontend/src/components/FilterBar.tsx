@@ -15,11 +15,11 @@ export default function FilterBar({ categories, destinations, selectedCategory, 
   useLanguage();
   return (
     <div style={styles.bar}>
-      <select value={selectedCategory} onChange={e => onCategoryChange(e.target.value)} style={styles.select}>
+      <select aria-label={t("Filter by category")} value={selectedCategory} onChange={e => onCategoryChange(e.target.value)} style={styles.select}>
         <option value="">{t("All Categories")}</option>
         {categories.map(c => <option key={c.id} value={c.name}>{t(c.name)}</option>)}
       </select>
-      <select value={selectedDestination} onChange={e => onDestinationChange(e.target.value)} style={styles.select}>
+      <select aria-label={t("Filter by destination")} value={selectedDestination} onChange={e => onDestinationChange(e.target.value)} style={styles.select}>
         <option value="">{t("All Destinations")}</option>
         {destinations.map(d => <option key={d.id} value={d.commune || d.province || d.country}>{d.commune || d.province || d.country}</option>)}
       </select>
