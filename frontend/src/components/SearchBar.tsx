@@ -43,6 +43,6 @@ export default function SearchBar({ onSearch, placeholder = t("Search informatio
 
 const styles: Record<string, React.CSSProperties> = {
   form: { display: 'flex', gap: '0.5rem', width: '100%', maxWidth: 600 },
-  input: { flex: 1, padding: '0.75rem 1rem', border: '1px solid #cbd5e1', borderRadius: 6, fontSize: '1rem', outline: 'none' },
-  button: { padding: '0.75rem 1.5rem', backgroundColor: '#1a3c2e', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600 },
+  input: { flex: 1, minWidth: 0, padding: '0.75rem 1rem', border: '1px solid #cbd5e1', borderRadius: 6, fontSize: '1rem', outline: 'none' },
+  button: { flexShrink: 0, padding: '0.75rem clamp(0.9rem, 4vw, 1.5rem)', backgroundColor: '#1a3c2e', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600 },
 };

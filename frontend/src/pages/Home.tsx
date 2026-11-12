@@ -51,9 +51,9 @@ export default function Home() {
 
 const styles: Record<string, React.CSSProperties> = {
   main: { minHeight: '80vh', backgroundColor: '#f0f7ff' },
-  hero: { position: 'relative', color: '#fff', padding: '5rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', minHeight: 420, overflow: 'hidden' },
+  hero: { position: 'relative', color: '#fff', padding: '5rem clamp(1rem, 5vw, 2rem)', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', minHeight: 420, overflow: 'hidden' },
   heroBg: { position: 'absolute', inset: 0, backgroundImage: 'url(/landing-hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center right', filter: 'blur(2px) brightness(0.75)', transform: 'scale(1.04)' } as React.CSSProperties,
-  heroText: { position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 520, background: 'linear-gradient(to right, rgba(26,111,168,0.92) 60%, rgba(26,111,168,0) 100%)', padding: '2rem 3rem 2rem 2rem', borderRadius: 8 },
+  heroText: { position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 520, background: 'linear-gradient(to right, rgba(26,111,168,0.92) 60%, rgba(26,111,168,0) 100%)', padding: '2rem clamp(1rem, 6vw, 3rem) 2rem clamp(1rem, 5vw, 2rem)', borderRadius: 8 },
   heading: { fontSize: 'clamp(1.5rem, 4vw, 2.5rem)', fontWeight: 700, margin: 0, lineHeight: 1.3 },
   sub: { color: '#d0e8f8', fontSize: '1rem', margin: 0 },
   section: { maxWidth: 900, margin: '0 auto', padding: '2.5rem 1.5rem' },
