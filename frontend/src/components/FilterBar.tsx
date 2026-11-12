@@ -21,7 +21,7 @@ export default function FilterBar({ categories, destinations, selectedCategory, 
       </select>
       <select value={selectedDestination} onChange={e => onDestinationChange(e.target.value)} style={styles.select}>
         <option value="">{t("All Destinations")}</option>
-        {destinations.map(d => <option key={d.id} value={d.commune}>{d.commune || d.province || d.country}</option>)}
+        {destinations.map(d => <option key={d.id} value={d.commune || d.province || d.country}>{d.commune || d.province || d.country}</option>)}
       </select>
     </div>
   );
