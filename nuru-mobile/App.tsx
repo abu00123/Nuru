@@ -217,7 +217,7 @@ function AppContent() {
                 <Pressable accessibilityRole="button" onPress={() => setDestination('')} style={[s.chip, !destination && s.active]}>
                   <Text style={!destination ? s.buttonText : s.link}>{t('All destinations')}</Text>
                 </Pressable>
-                {[...new Set(destinations.map(d => d.commune).filter(Boolean))].map(place => (
+                {[...new Set(destinations.map(d => d.commune || d.province || d.country).filter(Boolean))].map(place => (
                   <Pressable key={place} accessibilityRole="button" onPress={() => setDestination(place)} style={[s.chip, destination === place && s.active]}>
                     <Text style={destination === place ? s.buttonText : s.link}>{place}</Text>
                   </Pressable>
