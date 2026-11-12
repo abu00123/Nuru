@@ -263,3 +263,21 @@ class EntryDeletionTests(APITestCase):
         self.assertTrue(InformationEntry.objects.filter(pk=self.entry.pk).exists())
         self.assertTrue(self.entry.revisions.exists())
 
+
+class DestinationFilterTests(APITestCase):
+    def setUp(self):
+        from .models import Destination
+        commune = Destination.objects.create(country='Burundi', province='Bujumbura', commune='Mukaza')
+        province_only = Destination.objects.create(country='Burundi', province='Gitega')
+        for title, dest in [('In Mukaza', commune), ('In Gitega', province_only)]:
+            InformationEntry.objects.filter(pk=InformationEntry.objects.create(
+                title=title, summary='S', content='C', destination=dest).pk).update(is_published=True)
+
+    def titles(self, value):
+        return {e['title'] for e in self.client.get('/api/information/', {'destination': value}).data}
+
+    def test_filter_matches_commune_province_or_country(self):
+        self.assertEqual(self.titles('mukaza'), {'In Mukaza'})
+        self.assertEqual(self.titles('Gitega'), {'In Gitega'})
+        self.assertEqual(self.titles('Burundi'), {'In Mukaza', 'In Gitega'})
+        self.assertEqual(self.titles('Nowhere'), set())

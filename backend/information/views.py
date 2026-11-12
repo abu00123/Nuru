@@ -35,7 +35,11 @@ class InformationEntryListCreateView(generics.ListCreateAPIView):
         if category:
             queryset = queryset.filter(category__name__iexact=category)
         if destination:
-            queryset = queryset.filter(destination__commune__iexact=destination)
+            queryset = queryset.filter(
+                Q(destination__commune__iexact=destination)
+                | Q(destination__province__iexact=destination)
+                | Q(destination__country__iexact=destination)
+            )
 
         return queryset
 
