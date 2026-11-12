@@ -65,7 +65,7 @@ export default function Explore() {
         </div>
         <div style={styles.heroDots}>
           {images.map((_, i) => (
-            <button key={i} onClick={() => setHeroIndex(i)} style={{ ...styles.dot, opacity: i === heroIndex ? 1 : 0.4 }} aria-label={`Image ${i + 1}`} />
+            <button key={i} onClick={() => setHeroIndex(i)} style={{ ...styles.dot, opacity: i === heroIndex ? 1 : 0.4 }} aria-label={`Image ${i + 1}`} aria-current={i === heroIndex} />
           ))}
         </div>
       </div>
@@ -103,7 +103,8 @@ const styles: Record<string, React.CSSProperties> = {
   heroTitle: { color: '#fff', fontSize: '2rem', fontWeight: 700, margin: 0, maxWidth: 600 },
   heroCopy: { color: '#d4ede0', fontSize: '1.05rem', margin: 0, maxWidth: 500 },
   heroDots: { position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 8 },
-  dot: { width: 10, height: 10, borderRadius: '50%', backgroundColor: '#fff', border: 'none', cursor: 'pointer', padding: 0 },
+  // 24x24 tap target (WCAG 2.5.8); padding + content-box clip keeps the visible dot at 10px.
+  dot: { boxSizing: 'border-box', width: 24, height: 24, padding: 7, borderRadius: '50%', backgroundColor: '#fff', backgroundClip: 'content-box', border: 'none', cursor: 'pointer' },
   container: { maxWidth: 800, margin: '0 auto', padding: '2rem 1.5rem' },
   title: { fontSize: '1.5rem', fontWeight: 700, color: '#1a6fa8', marginBottom: '1.5rem' },
   controls: { display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' },
