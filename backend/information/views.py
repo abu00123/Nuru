@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.response import Response
 from django.db.models import Q
 from rest_framework.permissions import AllowAny, IsAdminUser
 from .models import Category, Destination, InformationEntry, SourceReview
@@ -50,6 +51,15 @@ class InformationEntryDetailView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method in ('PUT', 'PATCH', 'DELETE'):
             return [IsAdminUser()]
         return [AllowAny()]
+
+    def destroy(self, request, *args, **kwargs):
+        # Revision snapshots are a permanent audit trail (EntryRevision uses PROTECT),
+        # so entries are retired by unpublishing rather than deleting.
+        self.get_object()
+        return Response(
+            {'detail': 'Entries cannot be deleted because their revision history must be kept. Unpublish the entry instead.'},
+            status=status.HTTP_409_CONFLICT,
+        )
 
 
 class SourceReviewCreateView(generics.CreateAPIView):

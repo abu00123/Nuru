@@ -247,3 +247,19 @@ class PublicationWorkflowTests(APITestCase):
                 self.assertEqual(response.status_code, expected)
                 self.assertEqual(self.publish().status_code, expected)
         self.assertFalse(SourceReview.objects.filter(entry=self.entry).exists())
+
+
+class EntryDeletionTests(APITestCase):
+    def setUp(self):
+        self.admin = get_user_model().objects.create_user('delete-admin', is_staff=True)
+        self.entry = InformationEntry.objects.create(title='Keep me', summary='S', content='C')
+        self.url = f'/api/information/{self.entry.pk}/'
+        self.client.force_authenticate(self.admin)
+
+    def test_delete_is_refused_cleanly_to_preserve_revision_history(self):
+        response = self.client.delete(self.url)
+        self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
+        self.assertIn('unpublish', response.data['detail'].lower())
+        self.assertTrue(InformationEntry.objects.filter(pk=self.entry.pk).exists())
+        self.assertTrue(self.entry.revisions.exists())
+
