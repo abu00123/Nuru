@@ -1,0 +1,972 @@
+{
+ "citekeys": {
+  "alrababah casalis|2024": "GSM6I5PG",
+  "alrababah et al|2023": "LDKXU7P7",
+  "chatman|1996": "NSVR6MYY",
+  "davis|1989": "K8SN46I2",
+  "gillespie et al|2018": "7IGV88KY",
+  "hilligoss rieh|2008": "Y98RC5CZ",
+  "international crisis group|2016": "2QUXBER9",
+  "julisha.info|n.d.": "569KP4J8",
+  "kobotoolbox|2026": "RUGTIIK3",
+  "lemarchand|1996": "KY7WNM9A",
+  "lloyd et al|2013": "H28QXU4P",
+  "madon schoemaker|2021": "2DAH6K6T",
+  "malkki|1995": "JSJYRN7F",
+  "metzger|2007": "DK2RVEW3",
+  "metzger et al|2010": "DUU7P2R3",
+  "mukungu ngulube|2026": "3EH3ID3H",
+  "mukungu et al|2026": "ZNP93H83",
+  "oduntan ruthven|2019": "NVACCBZS",
+  "oduntan ruthven|2021": "3G8IWXFU",
+  "refugee.info|n.d.": "W2JVW2JP",
+  "sibomana|2020": "LRIEBVUU",
+  "unhcr|n.d.": "HGDWDYMC",
+  "unhcr|1996": "QJUXWAEL",
+  "unhcr|2016": "CF2EYKEH",
+  "unhcr|2022": "A9Y567E3",
+  "unhcr|2023": "VBMHT768",
+  "unhcr|2026a": "VAESGY2D",
+  "unhcr|2026b": "NJTFYI2B",
+  "van dijk|2020": "S23TVCQ2",
+  "wall et al|2017": "IGF72KI4",
+  "wilson|1981": "LBNNMYHC",
+  "wilson|1999": "P4WXHEAA",
+  "winkel friedrichs-liesenkötter|2022": "NJ9ITVPL"
+ },
+ "items": {
+  "GSM6I5PG": {
+   "id": "GSM6I5PG",
+   "type": "report",
+   "title": "Understanding refugee return: Key findings, gaps, and future research",
+   "issued": {
+    "date-parts": [
+     [
+      2024
+     ]
+    ]
+   },
+   "DOI": "10.47053/jdc.281124",
+   "URL": "https://doi.org/10.47053/jdc.281124",
+   "publisher": "World Bank–UNHCR Joint Data Center on Forced Displacement",
+   "author": [
+    {
+     "family": "Alrababah",
+     "given": "Ala'"
+    },
+    {
+     "family": "Casalis",
+     "given": "M."
+    }
+   ]
+  },
+  "LDKXU7P7": {
+   "id": "LDKXU7P7",
+   "type": "article-journal",
+   "title": "The Dynamics of Refugee Return: Syrian Refugees and Their Migration Intentions",
+   "issued": {
+    "date-parts": [
+     [
+      2023,
+      10
+     ]
+    ]
+   },
+   "DOI": "10.1017/S0007123422000667",
+   "URL": "https://www.cambridge.org/core/product/identifier/S0007123422000667/type/journal_article",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "53",
+   "page": "1108-1131",
+   "container-title": "British Journal of Political Science",
+   "issue": "4",
+   "author": [
+    {
+     "family": "Alrababah",
+     "given": "Ala"
+    },
+    {
+     "family": "Masterson",
+     "given": "Daniel"
+    },
+    {
+     "family": "Casalis",
+     "given": "Marine"
+    },
+    {
+     "family": "Hangartner",
+     "given": "Dominik"
+    },
+    {
+     "family": "Weinstein",
+     "given": "Jeremy"
+    }
+   ]
+  },
+  "NSVR6MYY": {
+   "id": "NSVR6MYY",
+   "type": "article-journal",
+   "title": "The impoverished life-world of outsiders",
+   "issued": {
+    "date-parts": [
+     [
+      1996,
+      3
+     ]
+    ]
+   },
+   "DOI": "10.1002/(SICI)1097-4571(199603)47:3<193::AID-ASI3>3.0.CO;2-T",
+   "URL": "https://onlinelibrary.wiley.com/doi/10.1002/(SICI)1097-4571(199603)47:3<193::AID-ASI3>3.0.CO;2-T",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "47",
+   "page": "193-206",
+   "container-title": "Journal of the American Society for Information Science",
+   "issue": "3",
+   "author": [
+    {
+     "family": "Chatman",
+     "given": "Elfreda A."
+    }
+   ]
+  },
+  "K8SN46I2": {
+   "id": "K8SN46I2",
+   "type": "article-journal",
+   "title": "Perceived Usefulness, Perceived Ease of Use, and User Acceptance of Information Technology",
+   "issued": {
+    "date-parts": [
+     [
+      1989,
+      9,
+      1
+     ]
+    ]
+   },
+   "DOI": "10.2307/249008",
+   "URL": "https://misq.umn.edu/misq/article/13/3/319/191/Perceived-Usefulness-Perceived-Ease-of-Use-and",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "13",
+   "page": "319-340",
+   "container-title": "MIS Quarterly",
+   "issue": "3",
+   "author": [
+    {
+     "family": "Davis",
+     "given": "Fred D."
+    }
+   ]
+  },
+  "7IGV88KY": {
+   "id": "7IGV88KY",
+   "type": "article-journal",
+   "title": "Syrian Refugees and the Digital Passage to Europe: Smartphone Infrastructures and Affordances",
+   "issued": {
+    "date-parts": [
+     [
+      2018,
+      1
+     ]
+    ]
+   },
+   "DOI": "10.1177/2056305118764440",
+   "URL": "https://journals.sagepub.com/doi/10.1177/2056305118764440",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "4",
+   "page": "2056305118764440",
+   "container-title": "Social Media + Society",
+   "issue": "1",
+   "author": [
+    {
+     "family": "Gillespie",
+     "given": "Marie"
+    },
+    {
+     "family": "Osseiran",
+     "given": "Souad"
+    },
+    {
+     "family": "Cheesman",
+     "given": "Margie"
+    }
+   ]
+  },
+  "Y98RC5CZ": {
+   "id": "Y98RC5CZ",
+   "type": "article-journal",
+   "title": "Developing a unifying framework of credibility assessment: Construct, heuristics, and interaction in context",
+   "issued": {
+    "date-parts": [
+     [
+      2008,
+      7
+     ]
+    ]
+   },
+   "DOI": "10.1016/j.ipm.2007.10.001",
+   "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0306457307002038",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "44",
+   "page": "1467-1484",
+   "container-title": "Information Processing & Management",
+   "issue": "4",
+   "author": [
+    {
+     "family": "Hilligoss",
+     "given": "Brian"
+    },
+    {
+     "family": "Rieh",
+     "given": "Soo Young"
+    }
+   ]
+  },
+  "2QUXBER9": {
+   "id": "2QUXBER9",
+   "type": "report",
+   "title": "Burundi: A dangerous third term",
+   "issued": {
+    "date-parts": [
+     [
+      2016
+     ]
+    ]
+   },
+   "publisher": "International Crisis Group",
+   "author": [
+    {
+     "literal": "International Crisis Group"
+    }
+   ]
+  },
+  "569KP4J8": {
+   "id": "569KP4J8",
+   "type": "webpage",
+   "title": "Julisha.Info",
+   "URL": "https://www.julisha.info/",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      9,
+      25
+     ]
+    ]
+   },
+   "author": [
+    {
+     "literal": "Julisha.Info"
+    }
+   ]
+  },
+  "RUGTIIK3": {
+   "id": "RUGTIIK3",
+   "type": "webpage",
+   "title": "Collecting data using web forms",
+   "issued": {
+    "date-parts": [
+     [
+      2026,
+      8,
+      28
+     ]
+    ]
+   },
+   "URL": "https://support.kobotoolbox.org/data_through_webforms.html",
+   "container-title": "KoboToolbox Support",
+   "author": [
+    {
+     "literal": "KoboToolbox"
+    }
+   ]
+  },
+  "KY7WNM9A": {
+   "id": "KY7WNM9A",
+   "type": "book",
+   "title": "Burundi: Ethnic conflict and genocide",
+   "issued": {
+    "date-parts": [
+     [
+      1996
+     ]
+    ]
+   },
+   "publisher": "Cambridge University Press",
+   "publisher-place": "Cambridge",
+   "author": [
+    {
+     "family": "Lemarchand",
+     "given": "René"
+    }
+   ]
+  },
+  "H28QXU4P": {
+   "id": "H28QXU4P",
+   "type": "article-journal",
+   "title": "Connecting with new information landscapes: information literacy practices of refugees",
+   "issued": {
+    "date-parts": [
+     [
+      2013,
+      1,
+      11
+     ]
+    ]
+   },
+   "DOI": "10.1108/00220411311295351",
+   "URL": "http://www.emerald.com/jd/article/69/1/121-144/205352",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "69",
+   "page": "121-144",
+   "container-title": "Journal of Documentation",
+   "issue": "1",
+   "author": [
+    {
+     "family": "Lloyd",
+     "given": "Annemaree"
+    },
+    {
+     "family": "Anne Kennan",
+     "given": "Mary"
+    },
+    {
+     "family": "Thompson",
+     "given": "Kim M."
+    },
+    {
+     "family": "Qayyum",
+     "given": "Asim"
+    }
+   ]
+  },
+  "2DAH6K6T": {
+   "id": "2DAH6K6T",
+   "type": "article-journal",
+   "title": "Digital identity as a platform for improving refugee management",
+   "issued": {
+    "date-parts": [
+     [
+      2021
+     ]
+    ]
+   },
+   "DOI": "10.1111/isj.12353",
+   "volume": "31",
+   "page": "929-953",
+   "container-title": "Information Systems Journal",
+   "issue": "6",
+   "author": [
+    {
+     "family": "Madon",
+     "given": "Shirin"
+    },
+    {
+     "family": "Schoemaker",
+     "given": "Emrys"
+    }
+   ]
+  },
+  "JSJYRN7F": {
+   "id": "JSJYRN7F",
+   "type": "book",
+   "title": "Purity and exile: Violence, memory, and national cosmology among Hutu refugees in Tanzania",
+   "issued": {
+    "date-parts": [
+     [
+      1995
+     ]
+    ]
+   },
+   "publisher": "University of Chicago Press",
+   "publisher-place": "Chicago",
+   "author": [
+    {
+     "family": "Malkki",
+     "given": "Liisa H."
+    }
+   ]
+  },
+  "DK2RVEW3": {
+   "id": "DK2RVEW3",
+   "type": "article-journal",
+   "title": "Making sense of credibility on the Web: Models for evaluating online information and recommendations for future research",
+   "issued": {
+    "date-parts": [
+     [
+      2007,
+      11
+     ]
+    ]
+   },
+   "DOI": "10.1002/asi.20672",
+   "URL": "https://onlinelibrary.wiley.com/doi/10.1002/asi.20672",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "58",
+   "page": "2078-2091",
+   "container-title": "Journal of the American Society for Information Science and Technology",
+   "issue": "13",
+   "author": [
+    {
+     "family": "Metzger",
+     "given": "Miriam J."
+    }
+   ]
+  },
+  "DUU7P2R3": {
+   "id": "DUU7P2R3",
+   "type": "article-journal",
+   "title": "Social and Heuristic Approaches to Credibility Evaluation Online",
+   "issued": {
+    "date-parts": [
+     [
+      2010,
+      8,
+      19
+     ]
+    ]
+   },
+   "DOI": "10.1111/j.1460-2466.2010.01488.x",
+   "URL": "https://academic.oup.com/joc/article/60/3/413-439/4098547",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "60",
+   "page": "413-439",
+   "container-title": "Journal of Communication",
+   "issue": "3",
+   "author": [
+    {
+     "family": "Metzger",
+     "given": "Miriam J."
+    },
+    {
+     "family": "Flanagin",
+     "given": "Andrew J."
+    },
+    {
+     "family": "Medders",
+     "given": "Ryan B."
+    }
+   ]
+  },
+  "3EH3ID3H": {
+   "id": "3EH3ID3H",
+   "type": "article-journal",
+   "title": "Navigating refugees' information landscapes: Examining impediments to refugees' information access and use in North Western Uganda",
+   "issued": {
+    "date-parts": [
+     [
+      2026
+     ]
+    ]
+   },
+   "DOI": "10.1177/01678329261418389",
+   "container-title": "Education for Information",
+   "author": [
+    {
+     "family": "Mukungu",
+     "given": "I."
+    },
+    {
+     "family": "Ngulube",
+     "given": "Patrick"
+    }
+   ]
+  },
+  "ZNP93H83": {
+   "id": "ZNP93H83",
+   "type": "article-journal",
+   "title": "Information behaviour of refugees in North Western Uganda: Examining approaches to information seeking and use behaviour patterns among South Sudanese refugees",
+   "issued": {
+    "date-parts": [
+     [
+      2026
+     ]
+    ]
+   },
+   "DOI": "10.1177/01678329261453564",
+   "container-title": "Education for Information",
+   "author": [
+    {
+     "family": "Mukungu",
+     "given": "I."
+    },
+    {
+     "family": "Ngulube",
+     "given": "Patrick"
+    },
+    {
+     "family": "Mukose",
+     "given": "R."
+    },
+    {
+     "family": "Musuya",
+     "given": "W."
+    }
+   ]
+  },
+  "NVACCBZS": {
+   "id": "NVACCBZS",
+   "type": "article-journal",
+   "title": "The Information Needs Matrix: A navigational guide for refugee integration",
+   "issued": {
+    "date-parts": [
+     [
+      2019,
+      5
+     ]
+    ]
+   },
+   "DOI": "10.1016/j.ipm.2018.12.001",
+   "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0306457318306939",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "56",
+   "page": "791-808",
+   "container-title": "Information Processing & Management",
+   "issue": "3",
+   "author": [
+    {
+     "family": "Oduntan",
+     "given": "Olubukola"
+    },
+    {
+     "family": "Ruthven",
+     "given": "Ian"
+    }
+   ]
+  },
+  "3G8IWXFU": {
+   "id": "3G8IWXFU",
+   "type": "article-journal",
+   "title": "People and places: Bridging the information gaps in refugee integration",
+   "issued": {
+    "date-parts": [
+     [
+      2021
+     ]
+    ]
+   },
+   "DOI": "10.1002/asi.24366",
+   "volume": "72",
+   "page": "83-96",
+   "container-title": "Journal of the Association for Information Science and Technology",
+   "issue": "1",
+   "author": [
+    {
+     "family": "Oduntan",
+     "given": "Olubukola"
+    },
+    {
+     "family": "Ruthven",
+     "given": "Ian"
+    }
+   ]
+  },
+  "W2JVW2JP": {
+   "id": "W2JVW2JP",
+   "type": "webpage",
+   "title": "Refugee.Info",
+   "URL": "https://www.refugee.info/",
+   "author": [
+    {
+     "literal": "Refugee.Info"
+    }
+   ]
+  },
+  "LRIEBVUU": {
+   "id": "LRIEBVUU",
+   "type": "webpage",
+   "title": "First group of Burundian refugees assisted to return home after years in exile",
+   "issued": {
+    "date-parts": [
+     [
+      2020,
+      8,
+      29
+     ]
+    ]
+   },
+   "URL": "https://www.unhcr.org/rw/news/first-group-burundian-refugees-assisted-return-home-after-years-exile",
+   "container-title": "United Nations High Commissioner for Refugees",
+   "author": [
+    {
+     "family": "Sibomana",
+     "given": "E."
+    }
+   ]
+  },
+  "HGDWDYMC": {
+   "id": "HGDWDYMC",
+   "type": "webpage",
+   "title": "Voluntary return",
+   "URL": "https://help.unhcr.org/rwanda/services/voluntary-return/",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      9,
+      25
+     ]
+    ]
+   },
+   "container-title": "UNHCR Rwanda Help",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "QJUXWAEL": {
+   "id": "QJUXWAEL",
+   "type": "book",
+   "title": "Handbook: Voluntary repatriation: International protection",
+   "issued": {
+    "date-parts": [
+     [
+      1996
+     ]
+    ]
+   },
+   "publisher": "United Nations High Commissioner for Refugees",
+   "publisher-place": "Geneva",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "CF2EYKEH": {
+   "id": "CF2EYKEH",
+   "type": "report",
+   "title": "Connecting refugees: How internet and mobile connectivity can improve refugee well-being and transform humanitarian action",
+   "issued": {
+    "date-parts": [
+     [
+      2016
+     ]
+    ]
+   },
+   "publisher-place": "Geneva",
+   "publisher": "United Nations High Commissioner for Refugees",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "A9Y567E3": {
+   "id": "A9Y567E3",
+   "type": "report",
+   "title": "Digital transformation strategy 2022–2026",
+   "issued": {
+    "date-parts": [
+     [
+      2022
+     ]
+    ]
+   },
+   "URL": "https://www.unhcr.org/digitalstrategy/wp-content/uploads/sites/161/2023/07/Digital-Transformation-Strategy-2022-2026-UNHCR-Web.pdf",
+   "publisher": "United Nations High Commissioner for Refugees",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "VBMHT768": {
+   "id": "VBMHT768",
+   "type": "report",
+   "title": "Mahama refugee camp, Rwanda",
+   "issued": {
+    "date-parts": [
+     [
+      2023,
+      2
+     ]
+    ]
+   },
+   "URL": "https://data.unhcr.org/en/documents/download/99716",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "publisher": "United Nations High Commissioner for Refugees",
+   "genre": "Fact sheet",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "VAESGY2D": {
+   "id": "VAESGY2D",
+   "type": "report",
+   "title": "Global trends: Forced displacement in 2025",
+   "issued": {
+    "date-parts": [
+     [
+      2026
+     ]
+    ]
+   },
+   "URL": "https://www.unhcr.org/sites/default/files/2026-06/global-trends-report-2025.pdf",
+   "publisher": "United Nations High Commissioner for Refugees",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "NJTFYI2B": {
+   "id": "NJTFYI2B",
+   "type": "webpage",
+   "title": "UNHCR Rwanda—Population statistics dashboard—30 June 2026",
+   "issued": {
+    "date-parts": [
+     [
+      2026,
+      7,
+      10
+     ]
+    ]
+   },
+   "URL": "https://data.unhcr.org/en/documents/details/123290",
+   "container-title": "UNHCR Operational Data Portal",
+   "author": [
+    {
+     "literal": "United Nations High Commissioner for Refugees"
+    }
+   ]
+  },
+  "S23TVCQ2": {
+   "id": "S23TVCQ2",
+   "type": "book",
+   "title": "The digital divide",
+   "issued": {
+    "date-parts": [
+     [
+      2020
+     ]
+    ]
+   },
+   "publisher": "Polity Press",
+   "author": [
+    {
+     "family": "van Dijk",
+     "given": "J."
+    }
+   ]
+  },
+  "IGF72KI4": {
+   "id": "IGF72KI4",
+   "type": "article-journal",
+   "title": "Syrian refugees and information precarity",
+   "issued": {
+    "date-parts": [
+     [
+      2017,
+      2
+     ]
+    ]
+   },
+   "DOI": "10.1177/1461444815591967",
+   "URL": "https://journals.sagepub.com/doi/10.1177/1461444815591967",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "19",
+   "page": "240-254",
+   "container-title": "New Media & Society",
+   "issue": "2",
+   "author": [
+    {
+     "family": "Wall",
+     "given": "Melissa"
+    },
+    {
+     "family": "Otis Campbell",
+     "given": "Madeline"
+    },
+    {
+     "family": "Janbek",
+     "given": "Dana"
+    }
+   ]
+  },
+  "LBNNMYHC": {
+   "id": "LBNNMYHC",
+   "type": "article-journal",
+   "title": "ON USER STUDIES AND INFORMATION NEEDS",
+   "issued": {
+    "date-parts": [
+     [
+      1981,
+      1
+     ]
+    ]
+   },
+   "DOI": "10.1108/eb026702",
+   "URL": "http://www.emerald.com/jd/article/37/1/3-15/208759",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "37",
+   "page": "3-15",
+   "container-title": "Journal of Documentation",
+   "issue": "1",
+   "author": [
+    {
+     "family": "Wilson",
+     "given": "T.D."
+    }
+   ]
+  },
+  "P4WXHEAA": {
+   "id": "P4WXHEAA",
+   "type": "article-journal",
+   "title": "Models in information behaviour research",
+   "issued": {
+    "date-parts": [
+     [
+      1999,
+      8,
+      1
+     ]
+    ]
+   },
+   "DOI": "10.1108/EUM0000000007145",
+   "URL": "http://www.emerald.com/jd/article/55/3/249-270/203519",
+   "accessed": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      15
+     ]
+    ]
+   },
+   "volume": "55",
+   "page": "249-270",
+   "container-title": "Journal of Documentation",
+   "issue": "3",
+   "author": [
+    {
+     "family": "Wilson",
+     "given": "T.D."
+    }
+   ]
+  },
+  "NJ9ITVPL": {
+   "id": "NJ9ITVPL",
+   "type": "article-journal",
+   "title": "Between usability and trustworthiness—The potential of information transfer using digital information platforms for refugees",
+   "issued": {
+    "date-parts": [
+     [
+      2022
+     ]
+    ]
+   },
+   "DOI": "10.1080/15228835.2022.2146031",
+   "volume": "40",
+   "page": "379-407",
+   "container-title": "Journal of Technology in Human Services",
+   "issue": "4",
+   "author": [
+    {
+     "family": "Winkel",
+     "given": "M."
+    },
+    {
+     "family": "Friedrichs-Liesenkötter",
+     "given": "H."
+    }
+   ]
+  }
+ }
+}

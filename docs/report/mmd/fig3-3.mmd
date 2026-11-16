@@ -1,0 +1,18 @@
+flowchart LR
+    U([Information user]) --> W
+    U --> M
+    AD([Administrator]) --> W
+    subgraph Presentation tier
+        W[React + TypeScript<br/>web app<br/><i>Vercel</i>]
+        M[Expo / React Native<br/>mobile prototype]
+    end
+    subgraph Application tier
+        API[Django REST Framework API<br/>validation · permissions · publication rules<br/><i>Render</i>]
+    end
+    subgraph Data tier
+        DB[(PostgreSQL<br/><i>Render</i>)]
+    end
+    W -- HTTPS / JSON --> API
+    M -- HTTPS / JSON --> API
+    API -- read / write --> DB
+    EXT[/External publications/] -. consulted manually .-> AD

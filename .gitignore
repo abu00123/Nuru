@@ -42,3 +42,8 @@ docs/report/Nuru_Capstone_Report_Zotero.docx
 docs/report/*.pdf
 docs/report/build/node_modules/
 docs/temporary testing screenshorts/
+
+# Kept out of the public repository (submitted report, ethics letter, consent form and per-participant tables)
+docs/report/Nuru_Capstone_Report_SUBMIT.docx
+docs/report/img/ethics-letter.png
+docs/report/appendices.md

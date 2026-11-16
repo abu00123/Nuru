@@ -1,0 +1,12 @@
+flowchart TD
+    A([Administrator drafts entry<br/>with source details]) --> B[Save entry<br/>version N]
+    B --> C{Source review<br/>for version N}
+    C -- Revision required --> D[Edit entry] --> E[Version increases to N+1] --> C
+    C -- Suitable --> F{Publish?}
+    F -- Yes --> G[(Published:<br/>visible to public)]
+    G --> H{Trigger}
+    H -- Substantive edit --> E
+    H -- User report --> I[Investigate report]
+    I -- Correction needed --> D
+    I -- No change needed --> J[Resolve report<br/>with notes]
+    H -- Source outdated --> K[Unpublish or<br/>mark outdated] --> D

@@ -1,0 +1,20 @@
+flowchart LR
+    subgraph T[Theories]
+        direction TB
+        W["Information needs and barriers<br/>(Wilson, 1999)"]
+        C["Credibility cues<br/>(Hilligoss & Rieh, 2008; Metzger, 2007)"]
+        A["Usefulness and ease of use<br/>(Davis, 1989)"]
+    end
+    subgraph S[Stages of the study]
+        direction TB
+        R["Requirements gathering"]
+        P["Presentation of sources,<br/>dates and limitations"]
+        E["Usability evaluation"]
+    end
+    W --> R
+    C --> P
+    A --> E
+    R --> O
+    P --> O
+    E --> O
+    O(["Users' ability to find, understand<br/>and assess return information"])

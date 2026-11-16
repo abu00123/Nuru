@@ -1,0 +1,27 @@
+flowchart LR
+    IU["👤 Information user"]
+    subgraph Nuru[Nuru system boundary]
+        direction LR
+        U1([Browse by category])
+        U2([Search and filter by destination])
+        U3([Read entry, source and dates])
+        U4([Follow step guide])
+        U5([Save entry])
+        U6([Change language])
+        U7([Report a problem])
+        A1([Sign in])
+        A2([Manage entries, categories and destinations])
+        A3([Record source review])
+        A4([Publish or unpublish])
+        A5([View revision history])
+        A6([Resolve reports])
+    end
+    AD["👤 Administrator"]
+    IU --- U1 & U2 & U3 & U4 & U5 & U6 & U7
+    U1 ~~~ A1
+    U2 ~~~ A2
+    U3 ~~~ A3
+    U4 ~~~ A4
+    U5 ~~~ A5
+    U6 ~~~ A6
+    A1 & A2 & A3 & A4 & A5 & A6 --- AD

@@ -1,0 +1,18 @@
+sequenceDiagram
+    actor A as Administrator
+    participant D as Admin dashboard (React)
+    participant API as Django REST API
+    participant DB as PostgreSQL
+    A->>D: Tick "Published" and save entry
+    D->>API: PUT /api/information/{id}/ (entry with is_published: true) + JWT
+    API->>API: Check token belongs to staff user
+    API->>DB: Load entry and current content_version
+    API->>DB: Find review for this version with outcome "suitable"
+    alt Source name present and suitable review found
+        API->>DB: Save is_published = true
+        API-->>D: 200 OK (updated entry)
+        D-->>A: Entry shown as published
+    else Missing source or review
+        API-->>D: 400 Bad Request (error message)
+        D-->>A: Explain what is required before publishing
+    end

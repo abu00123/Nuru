@@ -1,0 +1,71 @@
+erDiagram
+    CATEGORY ||--o{ INFORMATION_ENTRY : groups
+    DESTINATION ||--o{ INFORMATION_ENTRY : "applies to"
+    INFORMATION_ENTRY ||--o{ SOURCE_REVIEW : "reviewed in"
+    INFORMATION_ENTRY ||--o{ ENTRY_REVISION : "versioned as"
+    INFORMATION_ENTRY ||--o{ REPORT : "reported in"
+    USER ||--o{ SOURCE_REVIEW : records
+    USER ||--o{ REPORT : resolves
+
+    CATEGORY {
+        int id PK
+        string name
+    }
+    DESTINATION {
+        int id PK
+        string country
+        string province
+        string commune
+    }
+    INFORMATION_ENTRY {
+        int id PK
+        int category_id FK
+        int destination_id FK
+        string title
+        text summary
+        text content
+        string source_name
+        string source_url
+        date source_publication_date
+        json translations
+        json guide
+        json guide_translations
+        string verification_status
+        bool is_published
+        int content_version
+        datetime created_at
+        datetime updated_at
+    }
+    SOURCE_REVIEW {
+        int id PK
+        int entry_id FK
+        int entry_version
+        int reviewed_by FK
+        datetime reviewed_at
+        string outcome
+        text notes
+    }
+    ENTRY_REVISION {
+        int id PK
+        int entry_id FK
+        int version
+        json snapshot
+        datetime captured_at
+    }
+    REPORT {
+        int id PK
+        int information_entry_id FK
+        string reason
+        text comment
+        string status
+        text resolution_notes
+        int resolved_by FK
+        datetime resolved_at
+        datetime created_at
+    }
+    USER {
+        int id PK
+        string username
+        string password_hash
+        bool is_staff
+    }
