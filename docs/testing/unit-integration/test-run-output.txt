@@ -1,0 +1,74 @@
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+Found 30 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: corsheaders, messages, rest_framework, staticfiles
+  Apply all migrations: admin, auth, contenttypes, information, reports, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying information.0001_initial... OK
+  Applying information.0002_informationentry_translations... OK
+  Applying information.0003_informationentry_guides... OK
+  Applying information.0004_informationentry_content_version_sourcereview... OK
+  Applying information.0005_entryrevision... OK
+  Applying information.0006_informationentry_source_publication_date... OK
+  Applying reports.0001_initial... OK
+  Applying reports.0002_report_resolution_notes_report_resolved_at_and_more... OK
+  Applying sessions.0001_initial...test_filter_matches_commune_province_or_country (information.tests.DestinationFilterTests.test_filter_matches_commune_province_or_country) ... C:\nuru\backend\venv\Lib\site-packages\django\core\handlers\base.py:63: UserWarning: No directory at: C:\nuru\backend\staticfiles\
+  mw_instance = middleware(adapted_handler)
+ok
+test_delete_is_refused_cleanly_to_preserve_revision_history (information.tests.EntryDeletionTests.test_delete_is_refused_cleanly_to_preserve_revision_history) ... ok
+test_no_match_returns_empty_results (information.tests.InformationSearchTests.test_no_match_returns_empty_results) ... ok
+test_reviewed_translation_body_is_searchable_in_each_language (information.tests.InformationSearchTests.test_reviewed_translation_body_is_searchable_in_each_language) ... ok
+test_search_matches_title_summary_and_body_case_insensitively (information.tests.InformationSearchTests.test_search_matches_title_summary_and_body_case_insensitively) ... ok
+test_unreviewed_translations_and_drafts_are_not_public_search_results (information.tests.InformationSearchTests.test_unreviewed_translations_and_drafts_are_not_public_search_results) ... ok
+test_draft_edit_requires_new_review_before_republication (information.tests.PublicationWorkflowTests.test_draft_edit_requires_new_review_before_republication) ... ok
+test_new_entry_cannot_be_created_published (information.tests.PublicationWorkflowTests.test_new_entry_cannot_be_created_published) ... ok
+test_non_admin_cannot_review_or_publish (information.tests.PublicationWorkflowTests.test_non_admin_cannot_review_or_publish) ... ok
+test_public_cannot_list_or_retrieve_drafts (information.tests.PublicationWorkflowTests.test_public_cannot_list_or_retrieve_drafts) ... ok
+test_publication_without_review_is_rejected (information.tests.PublicationWorkflowTests.test_publication_without_review_is_rejected) ... ok
+test_published_edit_cannot_reuse_previous_review (information.tests.PublicationWorkflowTests.test_published_edit_cannot_reuse_previous_review) ... ok
+test_source_is_required_even_with_suitable_review (information.tests.PublicationWorkflowTests.test_source_is_required_even_with_suitable_review) ... ok
+test_suitable_review_records_identity_and_allows_publication (information.tests.PublicationWorkflowTests.test_suitable_review_records_identity_and_allows_publication) ... ok
+test_unsuitable_review_does_not_allow_publication (information.tests.PublicationWorkflowTests.test_unsuitable_review_does_not_allow_publication) ... ok
+test_admin_can_inspect_snapshot_and_matching_review (information.tests.RevisionHistoryTests.test_admin_can_inspect_snapshot_and_matching_review) ... ok
+test_edits_preserve_old_content_and_nested_guide (information.tests.RevisionHistoryTests.test_edits_preserve_old_content_and_nested_guide) ... ok
+test_partial_save_captures_only_persisted_changes (information.tests.RevisionHistoryTests.test_partial_save_captures_only_persisted_changes) ... ok
+test_unchanged_save_does_not_duplicate_history (information.tests.RevisionHistoryTests.test_unchanged_save_does_not_duplicate_history) ... ok
+test_upgrade_captures_current_version_without_inventing_past_versions (information.tests.RevisionHistoryTests.test_upgrade_captures_current_version_without_inventing_past_versions) ... ok
+test_current_suitable_review_sets_check_date_and_edit_invalidates_it (information.tests.SourceDateTests.test_current_suitable_review_sets_check_date_and_edit_invalidates_it) ... ok
+test_invalid_date_rejected_and_manual_check_date_ignored (information.tests.SourceDateTests.test_invalid_date_rejected_and_manual_check_date_ignored) ... ok
+test_publication_date_is_saved_in_snapshot_and_requires_new_review (information.tests.SourceDateTests.test_publication_date_is_saved_in_snapshot_and_requires_new_review) ... ok
+test_unknown_publication_date_and_legacy_check_date (information.tests.SourceDateTests.test_unknown_publication_date_and_legacy_check_date) ... ok
+test_django_admin_creating_resolved_report_records_attribution (reports.tests.ReportResolutionTests.test_django_admin_creating_resolved_report_records_attribution) ... ok
+test_django_admin_requires_notes_and_records_resolution (reports.tests.ReportResolutionTests.test_django_admin_requires_notes_and_records_resolution) ... ok
+test_public_cannot_resolve_or_submit_already_resolved_report (reports.tests.ReportResolutionTests.test_public_cannot_resolve_or_submit_already_resolved_report) ... ok
+test_reopening_clears_resolution (reports.tests.ReportResolutionTests.test_reopening_clears_resolution) ... ok
+test_resolution_records_server_owned_identity_and_date (reports.tests.ReportResolutionTests.test_resolution_records_server_owned_identity_and_date) ... ok
+test_resolution_requires_nonblank_notes (reports.tests.ReportResolutionTests.test_resolution_requires_nonblank_notes) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 5.293s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+ OK
+System check identified no issues (0 silenced).
