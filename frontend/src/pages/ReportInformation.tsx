@@ -56,8 +56,12 @@ export default function ReportInformation() {
             {REASONS.map(r => <option key={r.value} value={r.value}>{t(r.label)}</option>)}
           </select>
 
-          <label style={styles.label}>{t("Comments (optional)")}</label>
-          <textarea value={comment} onChange={e => setComment(e.target.value)} rows={4} style={styles.textarea} placeholder={t("Provide additional details...")} />
+          <label htmlFor="report-comment" style={styles.label}>{t("Comments (optional)")}</label>
+          <p id="report-privacy-hint" style={styles.hint}>
+            {t("Do not include your name, phone number or other personal details. Nuru does not need to know who you are.")}{' '}
+            <Link to="/privacy" style={styles.hintLink}>{t("Privacy and Terms")}</Link>
+          </p>
+          <textarea id="report-comment" aria-describedby="report-privacy-hint" value={comment} onChange={e => setComment(e.target.value)} rows={4} style={styles.textarea} placeholder={t("Provide additional details...")} />
 
           <button type="submit" disabled={submitting} style={styles.btn}>
             {submitting ? t("Submitting...") : t("Submit Report")}
@@ -69,6 +73,8 @@ export default function ReportInformation() {
 }
 
 const styles: Record<string, React.CSSProperties> = {
+  hint: { fontSize: '0.85rem', color: '#475569', margin: '-0.25rem 0 0.25rem', lineHeight: 1.5 },
+  hintLink: { color: '#1a5f8f', fontWeight: 600 },
   main: { backgroundColor: '#f8faf9', minHeight: '80vh' },
   container: { maxWidth: 560, margin: '0 auto', padding: '2rem 1.5rem' },
   back: { color: '#1a3c2e', textDecoration: 'none', fontSize: '0.9rem', display: 'inline-block', marginBottom: '1.5rem' },

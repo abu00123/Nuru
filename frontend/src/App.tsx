@@ -11,6 +11,7 @@ import ReportInformation from './pages/ReportInformation';
 import AdminDashboard from './pages/AdminDashboard';
 import InformationForm from './pages/InformationForm';
 import Login from './pages/Login';
+import Privacy from './pages/Privacy';
 
 export default function App() {
  const language = useLanguage();
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/information/:id" element={<InformationDetail />} />
           <Route path="/report/:id" element={<ReportInformation />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
           <Route path="/admin/new" element={<AdminRoute><InformationForm /></AdminRoute>} />
           <Route path="/admin/edit/:id" element={<AdminRoute><InformationForm /></AdminRoute>} />
