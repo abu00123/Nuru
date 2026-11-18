@@ -8,7 +8,7 @@ interface Props {
 
 const categoryImages: Record<string, string> = {
   Education: '/categories/education.jpg',
-  Safety: '/categories/safety.jpg',
+  Safety: '/categories/safety.avif',
   Documents: '/categories/documents.jpg',
   Housing: '/categories/housing.jpg',
   Healthcare: '/categories/healthcare.jpg',
