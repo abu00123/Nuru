@@ -32,7 +32,7 @@ export default function Home() {
         <div style={styles.heroBg} />
         <div style={styles.heroText}>
           <h1 style={styles.heading}>{t("Know before you go.")}</h1>
-          <p style={styles.sub}>{t("Verified information on safety, housing, healthcare and more — so you can return with confidence.")}</p>
+          <p style={styles.sub}>{t("Source-checked information on safety, housing, healthcare and more, to help you make your own informed decision.")}</p>
           <SearchBar onSearch={q => { if (q) navigate(`/explore?search=${q}`); }} />
         </div>
       </section>

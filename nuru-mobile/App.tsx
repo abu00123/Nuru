@@ -153,7 +153,7 @@ function AppContent() {
             <ImageBackground source={heroImage} style={s.heroBg} imageStyle={s.heroImg}>
               <View style={s.heroOverlay}>
                 <Text style={s.heroTitle}>{t('Know before you go.')}</Text>
-                <Text style={s.heroSub}>{t('Verified information on safety, housing, healthcare and more — so you can return with confidence.')}</Text>
+                <Text style={s.heroSub}>{t('Source-checked information on safety, housing, healthcare and more, to help you make your own informed decision.')}</Text>
                 <View style={s.searchRow}>
                   <TextInput
                     style={s.searchInput}
@@ -245,7 +245,7 @@ function AppContent() {
                       <Text style={s.label}>{t(item.category_name ?? 'Information')} · {item.destination_name ?? t('All locations')}</Text>
                       <Text style={s.title}>{item.title}</Text>
                       <Text style={s.copy}>{item.summary}</Text>
-                      <Text style={item.verification_status === 'verified' ? s.verified : s.caution}>{item.verification_status === 'verified' ? t('✓ Verified') : item.verification_status === 'outdated' ? t('Outdated') : t('Unverified')}</Text>
+                      <Text style={item.verification_status !== 'outdated' && item.last_verified ? s.verified : s.caution}>{sourceCheckLabel(item)}</Text>
                       <Text style={s.link}>{t('Read more →')}</Text>
                     </Pressable>
                   );
@@ -297,8 +297,13 @@ function AppContent() {
                 <Text style={s.label}>{t(detail.category_name ?? '')} · {detail.destination_name}</Text>
                 <Text style={s.heading}>{detail.title}</Text>
                 <ArticleActions entry={detail} />
-                <Text style={detail.verification_status === 'verified' ? s.verified : s.caution}>{t(detail.verification_status === 'verified' ? 'Verified' : detail.verification_status === 'outdated' ? 'Outdated' : 'Unverified')}</Text>
-                <Text style={s.copy}>{t('Last verified:')} {detail.last_verified ?? t('Not yet verified')}</Text>
+                <Text style={detail.verification_status !== 'outdated' && detail.last_verified ? s.verified : s.caution}>{sourceCheckLabel(detail)}</Text>
+                <Text style={s.copy}>{t('Last checked:')} {detail.last_verified ?? t('Not yet checked for this version')}</Text>
+                <View accessibilityRole="text" style={s.sourceNotice}>
+                  <Text style={s.title}>{t('What "source checked" means')}</Text>
+                  <Text style={s.copy}>{t('An administrator has confirmed that this entry matches its cited source, for the version shown, on the date above. It does not confirm that conditions are still the same, or that a place is safe for you.')}</Text>
+                  <Text style={s.copy}>{t('Nuru does not tell you whether to return. For advice about your own situation, contact UNHCR or another organisation you trust.')}</Text>
+                </View>
                 <Text style={s.title}>{detail.summary}</Text>
                 <Text selectable style={s.content}>{detail.content}</Text>
                 <StepGuide entry={rawDetail!} />
@@ -315,6 +320,12 @@ function AppContent() {
       </ScrollView>
     </SafeAreaView>
   );
+}
+
+// Public label comes from the version-linked source review, not a manually set field.
+function sourceCheckLabel(entry: { verification_status?: string; last_verified?: string | null }) {
+  if (entry.verification_status === 'outdated') return t('Marked as outdated');
+  return entry.last_verified ? t('Source checked') : t('Not yet source-checked');
 }
 
 export default function App() { return <SafeAreaProvider><AppContent /></SafeAreaProvider>; }
@@ -366,6 +377,7 @@ const s = StyleSheet.create({
   link: { color: '#1a6fa8', fontWeight: '600', fontSize: 14 },
   verified: { color: '#26734d', fontWeight: '700' },
   caution: { color: '#8a4d0f', fontWeight: '700' },
+  sourceNotice: { backgroundColor: '#eef6fc', borderLeftWidth: 4, borderLeftColor: '#1a6fa8', borderRadius: 8, padding: 14, gap: 6 },
   notice: { padding: 28, alignItems: 'center', gap: 10 },
   error: { color: '#a12525', lineHeight: 22 },
   choice: { paddingVertical: 10, minHeight: 44 },

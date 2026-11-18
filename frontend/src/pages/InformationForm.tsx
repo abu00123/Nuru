@@ -32,7 +32,7 @@ export default function InformationForm() {
   const [error, setError] = useState('');
   const [form, setForm] = useState({
     title: '', summary: '', content: '', category: '', destination: '',
-    source_name: '', source_url: '', verification_status: 'verified',
+    source_name: '', source_url: '', verification_status: 'unverified',
     source_publication_date: '', is_published: false,
   });
 
@@ -151,10 +151,10 @@ export default function InformationForm() {
 
           <div style={styles.row}>
             <div style={styles.field}>
-              <label style={styles.label}>Verification Status</label>
+              <label style={styles.label}>Content status (internal)</label>
               <select name="verification_status" value={form.verification_status} onChange={handleChange} style={styles.select}>
-                <option value="verified">Verified</option>
-                <option value="unverified">Unverified</option>
+                <option value="verified">Current</option>
+                <option value="unverified">Needs review</option>
                 <option value="outdated">Outdated</option>
               </select>
             </div>

@@ -61,7 +61,7 @@ export default function Explore() {
       <div style={{ ...styles.hero, backgroundImage: `url(${images[heroIndex]})` }}>
         <div style={styles.heroOverlay}>
           <h1 style={styles.heroTitle}>{t("Reliable information for informed decisions")}</h1>
-          <p style={styles.heroCopy}>{t("Source-verified guidance for people considering voluntary return.")}</p>
+          <p style={styles.heroCopy}>{t("Source-checked guidance for people considering voluntary return.")}</p>
         </div>
         <div style={styles.heroDots}>
           {images.map((_, i) => (

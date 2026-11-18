@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import type { InformationEntry } from '../types/information';
 import { getInformationById } from '../services/informationService';
-import StatusBadge from '../components/StatusBadge';
+import SourceCheckBadge from '../components/SourceCheckBadge';
 
 export default function InformationDetail() {
   useLanguage();
@@ -52,10 +52,16 @@ export default function InformationDetail() {
           <h1 style={styles.title}>{entry.title}</h1>
           <ArticleActions entry={entry} />
           <div style={styles.badges}>
-            <StatusBadge status={entry.verification_status} />
-            <span style={styles.date}>{t("Last checked:")}{' '}{entry.last_verified ? new Date(`${entry.last_verified}T00:00:00`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Not yet checked for this version'}</span>
+            <SourceCheckBadge lastVerified={entry.last_verified} status={entry.verification_status} />
+            <span style={styles.date}>{t("Last checked:")}{' '}{entry.last_verified ? new Date(`${entry.last_verified}T00:00:00`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : t('Not yet checked for this version')}</span>
           </div>
         </div>
+
+        <aside role="note" aria-label={t('What "source checked" means')} style={styles.notice}>
+          <strong>{t('What "source checked" means')}</strong>
+          <p style={styles.noticeText}>{t('An administrator has confirmed that this entry matches its cited source, for the version shown, on the date above. It does not confirm that conditions are still the same, or that a place is safe for you.')}</p>
+          <p style={styles.noticeText}>{t('Nuru does not tell you whether to return. For advice about your own situation, contact UNHCR or another organisation you trust.')}</p>
+        </aside>
 
         {entry.translationFallback && <p role="note">{t('This article is shown in English because a reviewed translation is not available.')}</p>}
 <section style={styles.section}>
@@ -74,9 +80,9 @@ export default function InformationDetail() {
             </p>
           </section>
         )}
-        <p>Source publication date: {entry.source_publication_date
+        <p>{t('Source publication date:')} {entry.source_publication_date
           ? new Date(`${entry.source_publication_date}T00:00:00`).toLocaleDateString('en-GB')
-          : 'Unknown'}</p>
+          : t('Unknown')}</p>
 
         <Link to={`/report/${entry.id}`} style={styles.reportBtn}>{t("Report outdated information")}</Link>
       </div>
@@ -96,6 +102,8 @@ const styles: Record<string, React.CSSProperties> = {
   title: { fontSize: '1.4rem', fontWeight: 700, color: '#1e293b', margin: '0 0 1rem' },
   badges: { display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' },
   date: { fontSize: '0.85rem', color: '#475569' },
+  notice: { background: '#eef6fc', border: '1px solid #b9d9f0', borderLeft: '4px solid #1a6fa8', borderRadius: 8, padding: '1rem 1.25rem', marginBottom: '1.5rem', color: '#1e293b' },
+  noticeText: { margin: '0.5rem 0 0', lineHeight: 1.6, fontSize: '0.95rem' },
   section: { background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8, padding: '1.5rem', marginBottom: '1rem' },
   sectionTitle: { fontSize: '1rem', fontWeight: 700, color: '#1a3c2e', marginBottom: '0.75rem' },
   content: { color: '#475569', lineHeight: 1.7, margin: 0 },

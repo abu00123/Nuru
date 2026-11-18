@@ -3,7 +3,7 @@ import {localizeArticle,currentLanguage} from '../i18n';
 import { t, useLanguage } from '../i18n';
 import { Link } from 'react-router-dom';
 import type { InformationEntry } from '../types/information';
-import StatusBadge from './StatusBadge';
+import SourceCheckBadge from './SourceCheckBadge';
 
 interface Props {
   entry: InformationEntry;
@@ -23,7 +23,7 @@ export default function InformationCard({ entry: originalEntry }: Props) {
       <p style={styles.summary}>{entry.summary}</p>{entry.translationFallback && <p role="note">{t('This article is shown in English because a reviewed translation is not available.')}</p>}
       <ArticleActions entry={entry} />
       <div style={styles.footer}>
-        <StatusBadge status={entry.verification_status} />
+        <SourceCheckBadge lastVerified={entry.last_verified} status={entry.verification_status} />
         {entry.last_verified && (
           <span style={styles.date}>{t("Last checked:")}{' '}{new Date(entry.last_verified).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
         )}

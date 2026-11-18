@@ -4,7 +4,7 @@ import { getAllInformation } from '../services/informationService';
 import { getReports, updateReportStatus } from '../services/reportService';
 import type { InformationEntry } from '../types/information';
 import type { Report } from '../types/report';
-import StatusBadge from '../components/StatusBadge';
+import SourceCheckBadge from '../components/SourceCheckBadge';
 
 export default function AdminDashboard() {
   const [entries, setEntries] = useState<InformationEntry[]>([]);
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 {!e.is_published && <span style={styles.draftPill}>Draft</span>}
                 {!e.is_published && e.latest_review?.outcome !== 'suitable' && <span style={styles.reviewPill}>Needs review</span>}
-                <StatusBadge status={e.verification_status} />
+                <SourceCheckBadge lastVerified={e.last_verified} status={e.verification_status} />
               </div>
               <Link to={`/admin/edit/${e.id}`} style={styles.editLink}>Edit</Link>
             </div>
