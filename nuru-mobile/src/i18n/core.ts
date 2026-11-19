@@ -98,7 +98,16 @@ export const catalogs: Record<string, Record<string,string>> = {
     "Unable to connect. Please try again.": "Ntibishoboka kwihuza. Subira ugerageze.",
     "This information is no longer available.": "Aya makuru ntakiboneka.",
     "Unable to open the source link.": "Ntibishoboka gufungura inkomoko.",
-    "This source link is unavailable.": "Ihuza ry'inkomoko ntiriboneka."
+    "This source link is unavailable.": "Ihuza ry'inkomoko ntiriboneka.",
+    "Source checked": "Isôko ryaragenzurwa",
+    "Not yet source-checked": "Inkomoko yavyo ntirabasuzumwa",
+    "Marked as outdated": "Vyashizweko ikimenyetso c'uko vyaratevye",
+    "Not yet checked for this version": "Iyi verisiyo ntiracukurwa",
+    'What "source checked" means': "Ico \"gukeburwa ku bijanye n'isoko ry'amakuru\" bisobanura",
+    "An administrator has confirmed that this entry matches its cited source, for the version shown, on the date above. It does not confirm that conditions are still the same, or that a place is safe for you.": "Umuyobozi yemeje ko aya makuru ahuye n'isoko ryayo ryavuzwe, ku bijanye n'amakuru yerekanwa, ku musi uvugwa haruguru. Ivyo ntibishimangira ko ibintu bigihagaze uko vyari, canke ko ahantu hari hatagiramwo akaga kuri wewe.",
+    "Nuru does not tell you whether to return. For advice about your own situation, contact UNHCR or another organisation you trust.": "Nuru ntikubwira nimba ukwiye gusubira. Kugira uronke impanuro zijanye n'ukuntu ivy'iwawe vyifashe, nubaze UNHCR canke iyindi shirahamwe wizigira.",
+    "Source publication date:": "Itariki isoko ryasohoreweko:",
+    "Unknown": "Ntibizwi"
   },
   "rw": {
     "Home": "Ahabanza",
@@ -196,7 +205,16 @@ export const catalogs: Record<string, Record<string,string>> = {
     "Unable to connect. Please try again.": "Ntibishoboka guhuza. Ongera ugerageze.",
     "This information is no longer available.": "Aya makuru ntakiboneka.",
     "Unable to open the source link.": "Ntibishoboka gufungura inkomoko.",
-    "This source link is unavailable.": "Ihuza ry'inkomoko ntiriboneka."
+    "This source link is unavailable.": "Ihuza ry'inkomoko ntiriboneka.",
+    "Source checked": "Isoko ry'amakuru ryasuzumwe",
+    "Not yet source-checked": "Nta gisuzumwa cy'umwimerere cyarakorwa",
+    "Marked as outdated": "Byashyizweho ikimenyetso ko byarangiye igihe",
+    "Not yet checked for this version": "Iyi verisiyo iracyategereje gusuzumwa",
+    'What "source checked" means': "Icyo \"gukoresha isoko ry'amakuru ryagenzuwe\" bisobanura",
+    "An administrator has confirmed that this entry matches its cited source, for the version shown, on the date above. It does not confirm that conditions are still the same, or that a place is safe for you.": "Umuyobozi yemeje ko iyi nyandiko ihura n'isoko ryayo ryavuzweho, ku bw'uburyo bwagaragajwe, ku itariki iri hejuru. Ntibigaragaza ko ibintu bikiri uko byari bimeze, cyangwa ko ahantu hari umutekano kuri wowe.",
+    "Nuru does not tell you whether to return. For advice about your own situation, contact UNHCR or another organisation you trust.": "Nuru ntikubwira niba ugomba kugaruka. Kugira ngo ubone inama zerekeye uko imimerere yawe ihagaze, wahera kuri HCR cyangwa undi muryango wizera.",
+    "Source publication date:": "Itariki isoko ryasohotseho:",
+    "Unknown": "Ntibizwi"
   },
   "sw": {
     "Home": "Mwanzo",
@@ -294,7 +312,16 @@ export const catalogs: Record<string, Record<string,string>> = {
     "Unable to connect. Please try again.": "Haiwezi kuunganisha. Tafadhali jaribu tena.",
     "This information is no longer available.": "Taarifa hizi hazipatikani tena.",
     "Unable to open the source link.": "Haiwezi kufungua kiungo cha chanzo.",
-    "This source link is unavailable.": "Kiungo hiki cha chanzo hakipatikani."
+    "This source link is unavailable.": "Kiungo hiki cha chanzo hakipatikani.",
+    "Source checked": "Chanzo kimekaguliwa",
+    "Not yet source-checked": "Chanzo bado hakijakaguliwa",
+    "Marked as outdated": "Imealamishwa kuwa imepitwa na wakati",
+    "Not yet checked for this version": "Bado haijakaguliwa kwa ajili ya toleo hili",
+    'What "source checked" means': "Maana ya \"chanzo kimekaguliwa\"",
+    "An administrator has confirmed that this entry matches its cited source, for the version shown, on the date above. It does not confirm that conditions are still the same, or that a place is safe for you.": "Msimamizi amethibitisha kwamba taarifa hii inalingana na chanzo chake kilichotajwa, kwa toleo lililoonyeshwa, tarehe iliyo hapo juu. Haikathibitishi kwamba hali bado ni ileile au kwamba eneo fulani ni salama kwako.",
+    "Nuru does not tell you whether to return. For advice about your own situation, contact UNHCR or another organisation you trust.": "Nuru haikwambii ikiwa unapaswa kurudi. Kwa ushauri kuhusu hali yako mwenyewe, wasiliana na UNHCR au shirika jingine unaloamini.",
+    "Source publication date:": "Tarehe ya kuchapishwa kwa chanzo:",
+    "Unknown": "Haijulikani"
   }
 };
 Object.assign(catalogs.rn,{"Saved articles":"Amakuru yabitswe","Save article":"Bika amakuru","Remove from saved":"Kura mu vyabitswe","Share article":"Sangiza amakuru","Link copied.":"Ihuza ryakoporowe.","Copy this link":"Koporora iri huza","Article link":"Ihuza ry'amakuru","No saved articles yet.":"Nta makuru urabika.","Saved on this device. An internet connection is needed to open articles.":"Yabitswe kuri iki gikoresho. Ukeneye interineti kugira ufungure amakuru.","Some saved articles could not be loaded. They may be unpublished or your connection may be unavailable.":"Amakuru amwamwe yabitswe ntashobora gufungurwa. Ashobora kuba atakiboneka canke interineti idakora.","Unavailable article":"Amakuru ataboneka","Unable to load saved articles.":"Ntibishoboka gufungura amakuru yabitswe.","Unable to save this change. Please try again.":"Ntibishoboka kubika iri hinduka. Subira ugerageze.","Your saved list is full. Remove an article first.":"Urutonde rw'ivyabitswe rwuzuye. Banza ukureho amakuru amwe.","Unable to share. Please try again.":"Ntibishoboka gusangiza. Subira ugerageze.","Step-by-step guide":"Ubuyobozi bw'intambwe ku yindi","Who can apply":"Abashobora gusaba","Documents you need":"Impapuro ukeneye","Steps to follow":"Intambwe zo gukurikiza","Useful contacts":"Abo wokwitura","Phone":"Telefone","Email":"Imeyili","Visit website":"Ja ku rubuga","This guide is shown in English because a reviewed translation is not available.":"Ubu buyobozi buri mu congereza kuko ubuhinduzi bwagenzuwe butaraboneka."});
