@@ -47,3 +47,10 @@ docs/temporary testing screenshorts/
 docs/report/Nuru_Capstone_Report_SUBMIT.docx
 docs/report/img/ethics-letter.png
 docs/report/appendices.md
+
+# Kept out of the public repository (ethics summative with REC letter and participant consent screenshots; defense speaker notes)
+docs/ethics/
+docs/defense/
+
+# Local Python packages installed for PDF scripts
+tmp/pdf-deps/
