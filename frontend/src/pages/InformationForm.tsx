@@ -1,11 +1,11 @@
 import GuideEditor from '../components/GuideEditor';
 import type {Guide,GuideTranslations} from '../features/core';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getCategories, getDestinations, getInformationById, submitSourceReview } from '../services/informationService';
 import type { Category } from '../types/category';
 import type { Destination } from '../types/destination';
-import type { SourceReview } from '../types/information';
+import type { InformationEntry, SourceReview } from '../types/information';
 import api from '../services/api';
 
 export default function InformationForm() {
@@ -30,6 +30,7 @@ export default function InformationForm() {
   const [loadingEntry, setLoadingEntry] = useState(isEdit);
   const [entryLoaded, setEntryLoaded] = useState(!isEdit);
   const [error, setError] = useState('');
+  const [saveMessage, setSaveMessage] = useState('');
   const [form, setForm] = useState({
     title: '', summary: '', content: '', category: '', destination: '',
     source_name: '', source_url: '', verification_status: 'unverified',
@@ -73,14 +74,25 @@ export default function InformationForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (loadingEntry || !entryLoaded || submitting) return;
-    setError(''); setSubmitting(true);
+    setError(''); setSaveMessage(''); setSubmitting(true);
     const normalize = (value: Guide): Guide => ({...value,documents: value.documents?.map(document=>document.trim()).filter(Boolean)});
     const translated = Object.fromEntries(Object.entries(guideTranslations).map(([code,value])=>[code,{...value,guide:normalize(value.guide)}]));
     const payload = {...form,source_publication_date:form.source_publication_date || null,guide:normalize(guide),guide_translations:translated};
     try {
       if (isEdit) {
-        await api.put(`/information/${id}/`, payload);
+        const res = await api.put<InformationEntry>(`/information/${id}/`, payload);
+        const saved = res.data;
+        if (saved.is_published) {
+          // Publishing finishes the workflow, so return to the dashboard with a confirmation.
+          navigate('/admin', { state: { notice: `Saved and published: “${saved.title}” (version ${saved.content_version}).` } });
+          return;
+        }
+        // A draft save is usually followed by recording a review on this page, so stay here.
         await loadEntry(Number(id));
+        const reviewed = saved.latest_review?.outcome === 'suitable' && saved.latest_review?.entry_version === saved.content_version;
+        setSaveMessage(reviewed
+          ? `Saved as a draft (version ${saved.content_version}). Tick Publish and save to make it public.`
+          : `Saved as a draft (version ${saved.content_version}). Next: record a suitable review above, then tick Publish and save again.`);
       } else {
         const res = await api.post<{ id: number }>('/information/', payload);
         navigate(`/admin/edit/${res.data.id}`);
@@ -104,6 +116,7 @@ export default function InformationForm() {
     try {
       await submitSourceReview(Number(id), reviewOutcome, reviewNotes);
       setReviewNotes('');
+      setSaveMessage('');
       setReviewSuccess('Review recorded.');
       await loadEntry(Number(id));
     } catch {
@@ -116,6 +129,7 @@ export default function InformationForm() {
   return (
     <main style={styles.main}>
       <div style={styles.container}>
+        <Link to="/admin" style={styles.back}>← Back to dashboard</Link>
         <h1 style={styles.title}>{isEdit ? 'Edit Information' : 'Add Information'}</h1>
         {error && <p role="alert" style={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit} style={styles.form}>
@@ -209,6 +223,7 @@ export default function InformationForm() {
             {isEdit && !hasSuitableReview && <span style={styles.reviewWarning}> — record a suitable review above first</span>}
           </label>
 
+          {saveMessage && <p role="status" style={styles.saved}>{saveMessage}</p>}
           <button type="submit" disabled={submitting} style={styles.btn}>
             {submitting ? 'Saving...' : isEdit ? 'Save Changes' : 'Save Draft'}
           </button>
@@ -232,6 +247,8 @@ const styles: Record<string, React.CSSProperties> = {
   checkLabel: { display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.9rem', color: '#374151', cursor: 'pointer' },
   btn: { padding: '0.75rem', backgroundColor: '#1a3c2e', color: '#fff', border: 'none', borderRadius: 6, cursor: 'pointer', fontWeight: 600, fontSize: '1rem' },
   error: { color: '#a12525', fontSize: '0.9rem', whiteSpace: 'pre-wrap' },
+  saved: { color: '#1a7a45', backgroundColor: '#e6f4ed', padding: '0.6rem 0.8rem', borderRadius: 6, fontSize: '0.9rem', margin: 0 },
+  back: { display: 'inline-block', marginBottom: '1rem', color: '#1a3c2e', fontSize: '0.9rem', fontWeight: 600, textDecoration: 'none' },
   reviewSection: { border: '1px solid #e2e8f0', borderRadius: 8, padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', backgroundColor: '#f8faf9' },
   reviewTitle: { fontSize: '1rem', fontWeight: 700, color: '#1a3c2e', margin: 0 },
   reviewForm: { display: 'flex', flexDirection: 'column', gap: '0.75rem' },

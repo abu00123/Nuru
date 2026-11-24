@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAllInformation } from '../services/informationService';
 import { getReports, updateReportStatus } from '../services/reportService';
 import type { InformationEntry } from '../types/information';
@@ -12,11 +12,19 @@ export default function AdminDashboard() {
   const [resolutionNotes, setResolutionNotes] = useState<Record<number, string>>({});
   const [reportError, setReportError] = useState('');
   const [savingReport, setSavingReport] = useState<number | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // Confirmation passed from the edit form after a publish; read once so a refresh doesn't repeat it.
+  const [notice] = useState(() => (location.state as { notice?: string } | null)?.notice ?? '');
 
   useEffect(() => {
     getAllInformation().then(r => setEntries(r.data));
     getReports().then(r => setReports(r.data));
   }, []);
+
+  useEffect(() => {
+    if (notice) navigate(location.pathname, { replace: true, state: null });
+  }, [notice, navigate, location.pathname]);
 
   const handleStatusChange = async (id: number, status: Report['status']) => {
     const report = reports.find(item => item.id === id)!;
@@ -45,6 +53,8 @@ export default function AdminDashboard() {
           <h1 style={styles.title}>NURU ADMIN</h1>
           <Link to="/admin/new" style={styles.addBtn}>+ Add Information</Link>
         </div>
+
+        {notice && <p role="status" style={styles.notice}>{notice}</p>}
 
         <div style={styles.stats}>
           <div style={styles.stat}><span style={styles.statNum}>{entries.length}</span><span>Information</span></div>
@@ -107,6 +117,7 @@ const styles: Record<string, React.CSSProperties> = {
   container: { maxWidth: 900, margin: '0 auto', padding: '2rem 1.5rem' },
   header: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' },
   title: { fontSize: '1.5rem', fontWeight: 700, color: '#1a3c2e', margin: 0 },
+  notice: { backgroundColor: '#e6f4ed', color: '#1a7a45', padding: '0.75rem 1rem', borderRadius: 8, fontWeight: 600, margin: '0 0 1.5rem' },
   addBtn: { backgroundColor: '#1a3c2e', color: '#fff', padding: '0.6rem 1.2rem', borderRadius: 6, textDecoration: 'none', fontWeight: 600, fontSize: '0.9rem' },
   stats: { display: 'flex', gap: '1rem', marginBottom: '2rem' },
   stat: { background: '#fff', border: '1px solid #e2e8f0', borderRadius: 8, padding: '1rem 2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' },
